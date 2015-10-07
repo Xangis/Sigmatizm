@@ -1378,7 +1378,7 @@ void wxKeyboard::SelectMidiInputDevice(int number)
     catch( RtMidiError &error )
     {
         //wxMessageBox(wxString::FromAscii(error.what()));
-        wxMessageBox(wxString(error.getMessage()));
+        wxMessageBox(wxString::FromAscii(error.what()));
     }
 #endif
 }
@@ -1399,7 +1399,7 @@ void wxKeyboard::SelectMidiOutputDevice(int number)
     catch( RtMidiError &error )
     {
         //wxMessageBox(wxString::FromAscii(error.what()));
-        wxMessageBox(wxString(error.getMessage()));
+        wxMessageBox(wxString::FromAscii(error.what()));
     }
 #endif
 }
