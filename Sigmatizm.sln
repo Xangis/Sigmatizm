@@ -1,0 +1,68 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sigmatizm", "wxKeyboard.vcxproj", "{B6C70064-0FAE-432A-A213-15B58BDE0484}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StreamingAudioLib", "..\StreamingAudioLib\ALManager.vcxproj", "{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioFile", "..\AudioFile\AudioFile.vcxproj", "{CEA67267-3390-4F41-8A7C-2B1B16ED3517}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxAudioControls", "..\wxAudioControls\wxAudioControls.vcxproj", "{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Demo Debug VST|Win32 = Demo Debug VST|Win32
+		Demo Debug|Win32 = Demo Debug|Win32
+		Demo Release|Win32 = Demo Release|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Debug|Win32.Build.0 = Debug|Win32
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Demo Debug VST|Win32.ActiveCfg = Demo Debug VST|Win32
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Demo Debug VST|Win32.Build.0 = Demo Debug VST|Win32
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Demo Debug|Win32.ActiveCfg = Demo Debug|Win32
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Demo Debug|Win32.Build.0 = Demo Debug|Win32
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Demo Release|Win32.ActiveCfg = Demo Release|Win32
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Demo Release|Win32.Build.0 = Demo Release|Win32
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Release|Win32.ActiveCfg = Release|Win32
+		{B6C70064-0FAE-432A-A213-15B58BDE0484}.Release|Win32.Build.0 = Release|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Debug|Win32.ActiveCfg = Debug|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Debug|Win32.Build.0 = Debug|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Demo Debug VST|Win32.ActiveCfg = Demo Debug VST|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Demo Debug VST|Win32.Build.0 = Demo Debug VST|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Demo Debug|Win32.ActiveCfg = Demo Debug|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Demo Debug|Win32.Build.0 = Demo Debug|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Demo Release|Win32.ActiveCfg = Demo Release|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Demo Release|Win32.Build.0 = Demo Release|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Release|Win32.ActiveCfg = Release|Win32
+		{48E7128F-39C1-4781-B2BD-C9FFBAF92D09}.Release|Win32.Build.0 = Release|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Debug|Win32.Build.0 = Debug|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Demo Debug VST|Win32.ActiveCfg = Demo Debug VST|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Demo Debug VST|Win32.Build.0 = Demo Debug VST|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Demo Debug|Win32.ActiveCfg = Demo Debug|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Demo Debug|Win32.Build.0 = Demo Debug|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Demo Release|Win32.ActiveCfg = Demo Release|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Demo Release|Win32.Build.0 = Demo Release|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Release|Win32.ActiveCfg = Release|Win32
+		{CEA67267-3390-4F41-8A7C-2B1B16ED3517}.Release|Win32.Build.0 = Release|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Debug|Win32.Build.0 = Debug|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Demo Debug VST|Win32.ActiveCfg = Demo Debug VST|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Demo Debug VST|Win32.Build.0 = Demo Debug VST|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Demo Debug|Win32.ActiveCfg = Demo Debug|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Demo Debug|Win32.Build.0 = Demo Debug|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Demo Release|Win32.ActiveCfg = Demo Release|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Demo Release|Win32.Build.0 = Demo Release|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Release|Win32.ActiveCfg = Release|Win32
+		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

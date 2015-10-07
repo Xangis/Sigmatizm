@@ -1,0 +1,29 @@
+# Sigmatizm makefile.  Requires wxWidgets.
+# by default, wx-config from the PATH is used
+WX_CONFIG := wx-config
+
+# Main executable file
+PROGRAM = Sigmatizm.app/Contents/MacOS/Sigmatizm
+
+# Directory containing library portions of code.
+INCLUDEDIR2 = /usr/local/include
+INCLUDEDIR3 = /Users/macuser/Desktop/rtmidi-1.0.11
+LIBDIR = /usr/local/lib
+
+# Object files
+OBJECTS = wxMiniWavePanel.o SettingsDlg.o SynthParametersDlg.o wxHarmonicsPanel.o wxkeyboard.o wxkeyboardapp.o ../../rtmidi-1.0.11/RtMidi.o ../wxControls/wxSettingsFile.o ../wxControls/wxBitmapSlider.o ../wxControls/wxMidiSettingsDlg.o ../wxControls/wxVolumeMeter.o ../wxControls/wxSwitch.o ../wxControls/wxKeylessChoice.o ../wxControls/wxOctaveCtrl.o ../wxControls/wxBitmapSpinButton.o ../wxControls/wxKeylessButton.o ../wxControls/wxKeylessBitmapButton.o ../StreamingAudioLib/AudioUtil.o ../StreamingAudioLib/Wavetable.o ../wxControls/wxAudioSettings.o
+
+CXX = $(shell $(WX_CONFIG) --cxx -ggdb)
+
+.SUFFIXES:	.o .cpp
+
+.cpp.o :
+	$(CXX) -ggdb -c -D__MACOSX_CORE__ -I$(INCLUDEDIR2) -I$(INCLUDEDIR3) `$(WX_CONFIG) --cxxflags` -o $@ $<
+
+all:    $(PROGRAM)
+
+$(PROGRAM):	$(OBJECTS)
+	$(CXX) -o $(PROGRAM) $(OBJECTS) -L$(LIBDIR) `$(WX_CONFIG) --libs` -framework CoreMidi -framework CoreAudio -framework CoreFoundation -lportaudio
+
+clean: 
+	rm -f *.o $(PROGRAM)

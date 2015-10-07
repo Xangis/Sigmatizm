@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+	<title>SigmaTizm - Help</title>
+</head>
+
+<body text="#000000" link="#000099" vlink="#000099">
+<center>
+  <p><font size="+4" face="Verdana, Arial, Helvetica, sans-serif">SigmaTizm</font><font face="Verdana, Arial, Helvetica, sans-serif"><br />
+    <em>A Virtual Additive Synthesizer</em><br>
+    Version 1.01</font></p>
+</center>
+<p align="center"><a href="fulldlg.htm"><img src="SigmatizmSmall.png" border="0" /></a></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">SigmaTizm is an additive 
+  synthesizer with 128 harmonic oscillators. For more about how additive synthesis works, 
+  you can read <a href="additive.htm">this intro</a>.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">It can be controlled using 
+  the keys of your computer keyboard, with each row of keys representing a different 
+  octave. A key will light up with a red circle when its note is playing. It can 
+  also be controlled with the mouse or via an external MIDI keyboard.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif"><strong>Harmonics Editor</strong></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The top left portion of 
+  the window is the harmonics editor. This is where you define the timbre of the 
+  sound the synthesizer will play. SigmaTizm supports 128 oscillators, 
+  with each bar representing a harmonic. The first bar represents the base frequency of the key being
+played, the second bar 2x that frequency, the third 3x that frequency, and so on.
+</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">
+Clicking in the harmonics editor will change the level for a particular harmonic and 
+ right-clicking will clear that  harmonic.
+If notes are playing, you should hear the change in timbre. In addition, 
+  the changes should be reflected in either the 'attack' or 'sustain' waveform 
+  preview. </font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">You can also left-click 
+  and drag to draw harmonics and right-click and drag to erase harmonics. Doing 
+  this while a note is playing will let you morph the sound in realtime for interesting 
+  filter effects.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The harmonics editor starts 
+  with a simple plain vanilla sine wave fundamental in both the attack and sustain 
+  phases of sound generation. You can change these two sets of harmonics independently 
+  by clicking the &quot;Attack&quot; button to edit attack harmonics and the &quot;Sustain&quot; 
+  button to edit sustain harmonics. If you want to copy from one panel to the 
+  other, the arrow buttons between the &quot;Attack&quot; and &quot;Sustain&quot; 
+  buttons will let you do so.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">If you would like to start 
+  building with the harmonic series for a standard waveform (square, triangle, etc.) you can select it 
+  from the waveform list and click the &quot;Generate&quot; button. The panel 
+  will then contain the harmonic series for that waveform at levels appropriate 
+  for the &quot;Target Polyphony&quot; setting.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The &quot;Target Polyphony&quot; 
+  setting controls overall volume levels when generating or normalizing waveforms 
+  and is meant to determine the number of notes you can safely play without distortion. 
+  The &quot;Safe Polyphony&quot; number is an indicator of the number of notes 
+  that can be played simultaneously without &quot;annoying&quot; the soft limiter 
+  and is the maximum number of notes that can be played without the total peak 
+  level adding up to 1.0. Beyond that level, there is the danger of "clipping" which flattens
+  the peaks of the output sound, whicn is often (but not always) undesirable.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">Clcking the &quot;Normalize&quot; 
+  buttons will re-scale the harmonics in the editor window to more closely match 
+  the target polyphony level. This can be used to easily increase or decrease 
+  the overall volume of a sound you have created.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The &quot;Clear&quot; button 
+  removes all harmonics from the editor window.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The slider to the right 
+  of the window controls the &quot;zoom level&quot; of the harmonics window and 
+  lets you edit lower-level harmonics in greater detail. The number above the 
+  slider will show the maximum harmonic level for that zoom level.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif"><strong>Envelope Settings</strong></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The envelope settings let 
+  you control a standard ADSR (attack, decay, sustain, release) envelope for SigmaTizm. 
+  By default the attack time and decay time are both zero, which means notes will 
+  go into sustain phase as soon as they are played. If you want to hear both the 
+  attack and sustain portions of your harmonic series you will have to increase 
+  the attack and/or decay values.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The attack time is the amount 
+  of time it takes to go from zero to full volume. The decay time is the amount 
+  of time it takes to go from full volume to sustain volume. The sustain volume 
+  is a percent of max volume to sustain sounds at, and the release time is the 
+  amount of time it takes a sound to decay after the note stops playing.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">Attack and decay settings 
+  have a maximum time of 1 second, while release has a maximum time of 1/2 second. All slider time 
+values are in milliseconds.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">When playing notes, the 
+  attack harmonic will start playing at zero volume. It will gradually increase 
+  in volume until the attack time is reached, then it will gradually decrease 
+  in volume toward the sustain level for the duration of the decay time. During 
+  this time, the harmonics that are playing will gradually transform from the 
+  attack harmonics to the sustain harmonics. If the attack and decay time are 
+  zero, then the harmonic transformation does not take place and the sustain harmonic 
+  plays immediately. If the sustain level is set at 100, then the volume level 
+  does not decrease during the decay phase. When a note is released, it will continue 
+  playing the sustain harmonics at lower volumes until the release time is reached.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">Because harmonics switch 
+  to sustain harmonics when a note is released, there can be a pop or click sound 
+  if the entire attack-decay phase has not completed and the synthesizer is still 
+  transforming harmonics from attack to release. With very short attack and decay 
+  times this will not happen, but with long ones it will happen when playing and 
+  releasing notes quickly.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">In addition, if the release 
+  time is set to 0, sound will cut off immediately when a note is released, which 
+  will almost always result in a pop or static sound. This may or may not be desirable. 
+  If it is not, keeping the release time at 10 milliseconds or so will prevent 
+  it. </font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif"><strong>LFO Settings</strong></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The low-frequency oscillator 
+  is an oscillator that can be used to add vibrato to sounds that are playing. 
+  The range is from 0 to 20 oscillations per second with a resolution of a tenth 
+  of a second. The vibrato waveform can be changed, and the modulation wheel will 
+  control the depth (intesity) of the vibrato.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif"><strong>The Keyboard</strong></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The keyboard is both a controller 
+  and indicator of notes playing. When a note is playing, its key will show a 
+  red dot. Notes can be triggered by clicking on them, by typing on the computer 
+  keyboard, or by using an external MIDI controller.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">If playing via the mouse, 
+  notes will release as soon as the mouse button is released. in the &quot;main&quot; 
+  part of the window. However, if the mouse is released in the &quot;harmonics&quot; 
+  section of the synth -- which includes the harmonics editor panel and the peak 
+  and polyphony info section below it -- then notes will continue to play. You 
+  will need to do this if you want to keep notes playing while you tinker with 
+  the harmonics. Another interesting thing to note is that if you have multiple 
+  notes playing, right-clicking a lit note will deactivate it.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">When playing notes with 
+  the keyboard, each row of keys will represent a different octave with the function 
+  keys F1 through F12 being the lowest octave and row of keys starting with Z 
+  being the highest.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif"><strong>CPU Usage</strong></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">Additive synthesis is notorious for requiring a lot of CPU power.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">Depending on synthesizer 
+  settings, each note that is playing can take as many as 35 million calculations 
+  per second. At a sample rate of 44100 samples per second and with 128 harmonic 
+  oscillators, SigmaTizm has to do a large amount of math, especially when you 
+  figure in calculating volume envelope and interpolation of harmonics from attack 
+  to sustain phase and the LFO. If you find your system slowing down and generating 
+  choppy sound, the two things that will reduce CPU usage the most will be playing 
+  fewer notes or using fewer harmonics in the sounds you have created.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">Generating one of the 'canned' 
+  waveforms like square, triangle, or saw will result in the creation of either 
+  64 or 128 harmonics. Since the highest harmonics will not normally be audible 
+  or will create aliasing sounds, it may be a good idea to erase them (right-click 
+  and drag in the harmonics editor) to save CPU cycles.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif"><strong>Other Controls</strong></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The &quot;Bank&quot; and 
+  &quot;Patch&quot; spinners are used for changing patches on an external MIDI 
+  device. They will only function if MIDI output is enabled.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The exclamation point icon 
+  is a &quot;panic&quot; button that turns all MIDI notes off.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The info button shows the 
+  about box.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">If you're reading this you 
+  know what the question mark does.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The icon that looks like 
+  a MIDI connector lets you change <a href="midi.htm">MIDI settings</a>.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The wrench icon lets you 
+  choose which sound device to use for output. SigmaTizm will use your primary 
+  audio device by default, but you can use any of your ASIO, DirectSound, or MME 
+  devices for output as long as they support standard CD-quality output.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The disk and folder icons 
+  let you save and load patches, respectively. This is so you can save sounds 
+  you have created for later recall. SigmaTizm comes with a few built-in patches 
+  as examples of sounds that can be created.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The two bars at the right 
+  are the peak level indicator. They let you know how loud the playing sounds 
+  are in relation to the maximum. If the peak indicators are more than about three-quarters 
+  full you will be getting some distortion from the synthesizer due to built in 
+  soft-limiting. This may or may not be desirable.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The first vertical slider 
+  at the left of the keyboard is the pitch wheel. It will change the pitch of 
+  the synthesizer by two semitones in either direction and also works for control 
+  of external MIDI devices.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif">The second vertical slider 
+  is the modulation wheel, which is used for mixing in vibrato from the LFO.</font></p>
+<p align="center"><font size="-1" face="Verdana, Arial, Helvetica, sans-serif">Copyright 
+  (c) 2006-2013 Zeta Centauri</font></p>
+</body>
+</html>
+
