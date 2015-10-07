@@ -8,7 +8,7 @@
 #include "wxKeylessChoice.h"
 #include "wxBitmapSpinButton.h"
 #include "MidiSettingsInterface.h"
-#include "../wxAudioControls/wxSwitch.h"
+#include "wxSwitch.h"
 
 #define ID_MIDISETTINGS_DLG 14000
 #define SYMBOL_wxMidiSettingsDlg_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX

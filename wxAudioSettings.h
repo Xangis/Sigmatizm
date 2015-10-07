@@ -7,7 +7,7 @@
 #include "wxKeylessChoice.h"
 #include "wxBitmapSpinButton.h"
 #include "AudioSettingsInterface.h"
-#include "../wxAudioControls/wxSwitch.h"
+#include "wxSwitch.h"
 
 #define ID_AUDIOSETTINGS_DLG 14000
 #define SYMBOL_AUDIOSETTINGSDLG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX

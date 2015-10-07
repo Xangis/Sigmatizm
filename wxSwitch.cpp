@@ -41,7 +41,7 @@ void wxSwitch::OnKeyDown( wxKeyEvent& event )
 	wxWindow* parent = this->GetParent();
 	if( parent )
 	{
-		parent->ProcessEvent( event );
+		parent->GetEventHandler()->ProcessEvent( event );
 	}
 	//event.Skip(true);
 }
@@ -51,7 +51,7 @@ void wxSwitch::OnKeyUp( wxKeyEvent& event )
 	wxWindow* parent = this->GetParent();
 	if( parent )
 	{
-		parent->ProcessEvent( event );
+		parent->GetEventHandler()->ProcessEvent( event );
 	}
 	//event.Skip(true);
 }
