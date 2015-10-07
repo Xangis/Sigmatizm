@@ -31,6 +31,11 @@ This application was partially but not fully ported to OSX. It will probably not
 right out of the box, but if you can get wxWidgets and GCC to play nice, it might not be
 too tough to build.
 
+New Additions After v1.0 (Github code):
+
+- Added white noise, pink noise, brown noise, random square, random saw, random triangle.
+- Added more patches in Release/Patches.
+
 Current Features:
 
 - Notes can be played using the computer keyboard and mouse.
