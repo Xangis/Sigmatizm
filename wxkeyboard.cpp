@@ -2,7 +2,7 @@
 #include "wx/aboutdlg.h"
 #include "wxMidiSettingsDlg.h"
 #include "wxAudioSettings.h"
-#include "../StreamingAudioLib/AudioUtil.h"
+#include "AudioUtil.h"
 //#include "MidiUtil.h"
 #include <vector>
 
