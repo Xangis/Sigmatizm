@@ -110,9 +110,10 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\portaudio\include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;E:\code\rtmidi-2.1.0;E:\code\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\rtmidi-2.1.0\lib;E:\code\portaudio\build\msvc\Win32\Debug;E:\code\libsndfile-1.0.25\lib;E:\code\wxWidgets-3.0.2\lib\vc_lib;$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\portaudio\build\msvc\Win32\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\Sigmatizm\pa_stable_v19_20140130\portaudio\include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;E:\code\Sigmatizm\rtmidi-2.1.0;E:\code\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\Sigmatizm\rtmidi-2.1.0\lib;E:\code\Sigmatizm\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;E:\code\libsndfile-1.0.25\lib;E:\code\wxWidgets-3.0.2\lib\vc_lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\wxAudioControls\Release;E:\code\Sigmatizm\rtmidi-2.1.0\lib;E:\code\wxWidgets-3.0.2\lib\vc_lib;E:\code\libsndfile-1.0.25\lib;E:\code\Sigmatizm\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\wxWidgets-3.0.2\include\;E:\code\Sigmatizm\pa_stable_v19_20140130\portaudio\include;E:\code\Sigmatizm\rtmidi-2.1.0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -152,7 +153,7 @@
       </DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>wxmsw28u_core.lib;wxmsw28u_adv.lib;wxmsw28u_html.lib;wxbase28u_xml.lib;wxmsw28u_aui.lib;wxexpat.lib;wxbase28u.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;rpcrt4.lib;wxtiff.lib;wxpng.lib;wxjpeg.lib;wxzlib.lib;winmm.lib;wxControls.lib;libsndfile-1.lib;portaudio_x86.lib;rtmidi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw30u_core.lib;wxmsw30u_adv.lib;wxmsw30u_html.lib;wxbase30u_xml.lib;wxmsw30u_aui.lib;wxexpat.lib;wxbase30u.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;rpcrt4.lib;wxtiff.lib;wxpng.lib;wxjpeg.lib;wxzlib.lib;winmm.lib;wxAudioControls.lib;libsndfile-1.lib;portaudio_x86.lib;rtmidi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)SigmaTizm.exe</OutputFile>
       <AdditionalLibraryDirectories>..\wxControls\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>

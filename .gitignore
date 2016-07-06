@@ -26,3 +26,12 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio Garbage
+UpgradeLog.XML
+*.user
+*.sln.old
+*.tlog
+*.unsuccessfulbuild
+*.lastbuildstate
+_UpgradeReport_Files
