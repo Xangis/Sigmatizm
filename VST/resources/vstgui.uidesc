@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+	<fonts>
+	</fonts>
+	<colors>
+		<color name="Background" rgba="#a5a5a5ff"/>
+		<color name="Focus" rgba="#ffffff59"/>
+		<color name="Light Grey" rgba="#aaaaaaff"/>
+		<color name="Pad Handle" rgba="#454fedff"/>
+	</colors>
+	<template background-color="Background" background-color-draw-style="filled and stroked" bitmap="background" class="CViewContainer" maxSize="830, 390" minSize="830, 390" mouse-enabled="true" name="Editor" origin="0, 0" size="830, 390" transparent="false">
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontVeryBig" font-antialias="true" font-color="Light Grey" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" origin="488, 339" round-rect-radius="6" shadow-color="~ BlackCColor" size="290, 30" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="true" text-alignment="center" text-inset="0, 0" title="TemplateSynth  www.willpirkle.com" transparent="true" value-precision="2" wheel-inc-value="0.1"/>
+	</template>
+	<custom>
+		<attributes Path="C:\VST3 SDK\public.sdk\MyProjects\SynthProjects\Windows\TemplateSynth\resources\vstgui.uidesc" name="VST3Editor"/>
+		<attributes name="FocusDrawing"/>
+		<attributes Size="2, 2" name="UIGridController"/>
+		<attributes SelectedTemplate="Editor" name="UITemplateController"/>
+		<attributes name="UIAttributesController"/>
+		<attributes EditorSize="0, 0, 1254, 834" SplitViewSize_0_0="0.658838071693448660000" SplitViewSize_0_1="0.328800988875154520000" SplitViewSize_1_0="0.483312731767614360000" SplitViewSize_1_1="0.506798516687268270000" SplitViewSize_2_0="0.692185007974481680000" SplitViewSize_2_1="0.299840510366826130000" TabSwitchValue="1" WriteRCFile="true" name="UIEditController"/>
+		<attributes SelectedRow="11" name="UIViewCreatorDataSource"/>
+		<attributes SelectedRow="-1" name="UITagsDataSource"/>
+		<attributes SelectedRow="-1" name="UIColorsDataSource"/>
+		<attributes SelectedRow="4" name="UIBitmapsDataSource"/>
+		<attributes SelectedRow="-1" name="UIFontsDataSource"/>
+	</custom>
+	<bitmaps>
+		<bitmap name="amberonoff" path="amberonoff.png"/>
+		<bitmap name="background" nineparttiled-offsets="0, 0, 0, 0" path="background.png"/>
+		<bitmap name="groupframe" nineparttiled-offsets="25, 25, 25, 25" path="groupframe.png"/>
+		<bitmap name="knob" path="knob.png"/>
+		<bitmap name="knob2" path="knob2.png"/>
+	</bitmaps>
+	<control-tags/>
+	<template background-color="~ BlackCColor" background-color-draw-style="filled and stroked" class="CViewContainer" mouse-enabled="true" name="KnobGroup KG" origin="0, 0" size="75, 85" transparent="true">
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontSmaller" font-antialias="true" font-color="Light Grey" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" origin="0, 5" round-rect-radius="6" shadow-color="~ RedCColor" size="75, 15" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" title="Control Name" transparent="true" value-precision="2" wheel-inc-value="0.1"/>
+		<view angle-range="270" angle-start="135" background-offset="0, 0" bitmap="knob" circle-drawing="false" class="CAnimKnob" corona-color="~ WhiteCColor" corona-dash-dot="false" corona-drawing="false" corona-from-center="false" corona-inset="0" corona-inverted="false" corona-outline="false" default-value="0" handle-color="~ WhiteCColor" handle-line-width="1" handle-shadow-color="~ GreyCColor" height-of-one-image="42" max-value="1" min-value="0" mouse-enabled="true" origin="16, 22" size="42, 42" sub-pixmaps="80" transparent="false" value-inset="0" wheel-inc-value="0.1" zoom-factor="1.5"/>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextEdit" default-value="0" font="~ NormalFontSmaller" font-antialias="true" font-color="Light Grey" frame-color="~ BlackCColor" frame-width="1" immediate-text-change="false" max-value="1" min-value="0" mouse-enabled="true" origin="15, 67" round-rect-radius="6" shadow-color="~ RedCColor" size="45, 15" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" title="0.0" transparent="true" value-precision="2" wheel-inc-value="0.1"/>
+	</template>
+	<template background-color="~ BlackCColor" background-color-draw-style="filled and stroked" class="CViewContainer" mouse-enabled="true" name="OptionMGroup OMG" origin="0, 0" size="75, 42" transparent="true">
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontSmaller" font-antialias="true" font-color="Light Grey" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" origin="0, 3" round-rect-radius="6" shadow-color="~ RedCColor" size="75, 15" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" title="Control Name" transparent="true" value-precision="2" wheel-inc-value="0.1"/>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="COptionMenu" default-value="0.5" font="~ SystemFont" font-antialias="true" font-color="~ GreenCColor" frame-color="~ BlackCColor" frame-width="1" max-value="4.29497e+009" menu-check-style="false" menu-popup-style="false" min-value="0" mouse-enabled="true" origin="5, 18" round-rect-radius="6" shadow-color="~ RedCColor" size="65, 18" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" transparent="false" value-precision="2" wheel-inc-value="0.1"/>
+	</template>
+	<template background-color="~ BlackCColor" background-color-draw-style="filled and stroked" class="CViewContainer" mouse-enabled="true" name="OMG KG Combo" origin="0, 0" size="75, 42" transparent="true">
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontSmaller" font-antialias="true" font-color="Light Grey" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" origin="0, 3" round-rect-radius="6" shadow-color="~ RedCColor" size="75, 15" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" title="Control Name" transparent="true" value-precision="2" wheel-inc-value="0.1"/>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="COptionMenu" default-value="0.5" font="~ SystemFont" font-antialias="true" font-color="~ GreenCColor" frame-color="~ BlackCColor" frame-width="1" max-value="4.29497e+009" menu-check-style="false" menu-popup-style="false" min-value="0" mouse-enabled="true" origin="2, 20" round-rect-radius="6" shadow-color="~ RedCColor" size="30, 18" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" transparent="false" value-precision="2" wheel-inc-value="0.1"/>
+		<view angle-range="270" angle-start="135" background-offset="0, 0" bitmap="knob2" circle-drawing="false" class="CAnimKnob" corona-color="~ WhiteCColor" corona-dash-dot="false" corona-drawing="false" corona-from-center="false" corona-inset="0" corona-inverted="false" corona-outline="false" default-value="0.5" handle-color="~ WhiteCColor" handle-line-width="1" handle-shadow-color="~ GreyCColor" height-of-one-image="20" max-value="1" min-value="0" mouse-enabled="true" origin="34, 19" size="20, 20" sub-pixmaps="80" transparent="false" value-inset="0" wheel-inc-value="0.1" zoom-factor="1.5"/>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontSmaller" font-antialias="true" font-color="Light Grey" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" origin="55, 20" round-rect-radius="6" shadow-color="~ RedCColor" size="18, 18" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" title="1.0" transparent="true" value-precision="1" wheel-inc-value="0.1"/>
+	</template>
+</vstgui-ui-description>
