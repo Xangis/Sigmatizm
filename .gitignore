@@ -35,3 +35,8 @@ UpgradeLog.XML
 *.unsuccessfulbuild
 *.lastbuildstate
 _UpgradeReport_Files
+*.pdb
+*.log
+*.filters
+*.manifest
+*.cache
