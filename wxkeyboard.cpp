@@ -1538,7 +1538,9 @@ void wxKeyboard::AllControllersOff( void )
 void wxKeyboard::OnLoadConfig( wxCommandEvent& event )
 {
 #ifdef WIN32
-	wxString path = wxStandardPaths::Get().GetDataDir() + _("\\patches");
+	// This will probably only work right on Windows 7 or newer because XP has a different path structure.
+	wxString path = wxStandardPaths::Get().GetUserConfigDir() + _("\\..\\Local\\Sigmatizm");
+	//wxMessageBox(path);
 #else
 	wxString path = _(".//Patches");
 #endif
@@ -1600,7 +1602,7 @@ void wxKeyboard::OnLoadConfig( wxCommandEvent& event )
 void wxKeyboard::OnSaveConfig( wxCommandEvent& event )
 {
 #ifndef DEMOVERSION
-	wxString path = wxStandardPaths::Get().GetDataDir() + _("\\patches");
+	wxString path = wxStandardPaths::Get().GetUserConfigDir() + _("\\..\\Local\\Sigmatizm");
 	wxFileDialog fdialog( this, _("Save Config As"), path, _(""), _("Sigmatizm Configurations (*.sigm) |*.sigm||"), wxFD_SAVE );
 
 	wxString filename;
