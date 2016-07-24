@@ -7,16 +7,16 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{49A17013-5369-4F54-83D5-443427DBC164}
 AppName=SigmaTizm
-AppVerName=SigmaTizm 1.0
+AppVerName=SigmaTizm 1.1
 AppPublisher=Zeta Centauri, Inc.
 AppPublisherURL=http://zetacentauri.com
 AppSupportURL=http://zetacentauri.com
 AppUpdatesURL=http://zetacentauri.com
 DefaultDirName={pf}\Zeta Centauri\SigmaTizm
 DefaultGroupName=Zeta Centauri\SigmaTizm
-LicenseFile=F:\src\zc\Sigmatizm\Release\License.txt
-OutputDir=F:\src\zc\Sigmatizm\Release
-OutputBaseFilename=SigmaTizm1Setup
+LicenseFile=E:\code\Sigmatizm\Release\License.txt
+OutputDir=E:\code\Sigmatizm\Release
+OutputBaseFilename=SigmaTizm1.1Setup
 Compression=lzma
 SolidCompression=yes
 
@@ -28,20 +28,20 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "F:\src\zc\Sigmatizm\Release\SigmaTizm.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\hsliderbk.bmp"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\hsliderind.bmp"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\octave.bmp"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\portaudio_x86.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\sigmatizm.htb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\SigmaTizm.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\sigmatizm.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\sliderbk.bmp"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\sliderind.bmp"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\spin.bmp"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\src\zc\Sigmatizm\Release\Patches\*"; DestDir: "{app}\Patches"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\code\Sigmatizm\Release\SigmaTizm.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\hsliderbk.bmp"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\hsliderind.bmp"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\octave.bmp"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\portaudio_x86.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\sigmatizm.htb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\SigmaTizm.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\sigmatizm.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\sliderbk.bmp"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\sliderind.bmp"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\spin.bmp"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\code\Sigmatizm\Release\Patches\*"; DestDir: "{localappdata}\Sigmatizm\"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-Source: "F:\src\zc\Sigmatizm\Demo Release\vcredist_x86.exe"; DestDir: "{app}"; Flags: ignoreversion deleteafterinstall
+Source: "E:\code\Sigmatizm\Release\vcredist_x86.exe"; DestDir: "{app}"; Flags: ignoreversion deleteafterinstall
 
 [Icons]
 Name: "{group}\SigmaTizm"; Filename: "{app}\SigmaTizm.exe"; WorkingDir: "{app}"
@@ -50,6 +50,6 @@ Name: "{commondesktop}\SigmaTizm"; Filename: "{app}\SigmaTizm.exe"; Tasks: deskt
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\SigmaTizm"; Filename: "{app}\SigmaTizm.exe"; Tasks: quicklaunchicon; WorkingDir: "{app}"
 
 [Run]
-Filename: "{app}\vcredist_x86.exe"; Parameters: "/q:a"; WorkingDir: "{app}";  StatusMsg: "Installing Visual C++ 2008 Redistributable..."; Flags: waituntilterminated
+Filename: "{app}\vcredist_x86.exe"; Parameters: "/q:a"; WorkingDir: "{app}";  StatusMsg: "Installing Visual C++ 2010 Redistributable..."; Flags: waituntilterminated
 Filename: "{app}\SigmaTizm.exe"; Description: "{cm:LaunchProgram,SigmaTizm}"; Flags: nowait postinstall skipifsilent
 
