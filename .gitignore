@@ -40,3 +40,8 @@ _UpgradeReport_Files
 *.filters
 *.manifest
 *.cache
+*.res
+*.sbr
+*.sdf
+*.opensdf
+*.suo

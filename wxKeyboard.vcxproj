@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -32,22 +32,27 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo Debug VST|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -110,10 +115,10 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\Sigmatizm\pa_stable_v19_20140130\portaudio\include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;E:\code\Sigmatizm\rtmidi-2.1.0;E:\code\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\Sigmatizm\rtmidi-2.1.0\lib;E:\code\Sigmatizm\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;E:\code\libsndfile-1.0.25\lib;E:\code\wxWidgets-3.0.2\lib\vc_lib;$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\wxAudioControls\Release;E:\code\Sigmatizm\rtmidi-2.1.0\lib;E:\code\wxWidgets-3.0.2\lib\vc_lib;E:\code\libsndfile-1.0.25\lib;E:\code\Sigmatizm\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\wxWidgets-3.0.2\include\;E:\code\Sigmatizm\pa_stable_v19_20140130\portaudio\include;E:\code\Sigmatizm\rtmidi-2.1.0;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\lib\pa_stable_v19_20140130\portaudio\include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;F:\lib\rtmidi-2.1.0;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\lib\rtmidi-2.1.0\lib;F:\lib\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;F:\lib\libsndfile-1.0.25\lib;F:\lib\wxWidgets-3.0.2\lib\vc_lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Xangis\code\wxAudioControls\Release;F:\lib\rtmidi-2.1.0\lib;F:\lib\wxWidgets-3.0.2\lib\vc_lib;F:\lib\libsndfile-1.0.25\lib;F:\lib\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:\lib\wxWidgets-3.0.2\include\;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\rtmidi-2.1.0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -254,9 +259,6 @@
     <ClCompile Include="wxMiniWavePanel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\lib\vstsdk24r2\public.sdk\source\vst2.x\aeffeditor.h" />
-    <ClInclude Include="..\..\..\lib\vstsdk24r2\public.sdk\source\vst2.x\audioeffect.h" />
-    <ClInclude Include="..\..\..\lib\vstsdk24r2\public.sdk\source\vst2.x\audioeffectx.h" />
     <ClInclude Include="HarmonicsCallback.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SettingsDlg.h" />
