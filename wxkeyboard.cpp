@@ -304,8 +304,7 @@ bool wxKeyboard::Create( wxWindow* parent, wxWindowID id, const wxString& captio
 void wxKeyboard::CreateControls()
 {
     wxImage spinImage;
-    //spinImage.LoadFile( _("spin.bmp"), wxBITMAP_TYPE_BMP );
-    spinImage.LoadFile( _("spin.bmp") );
+    spinImage.LoadFile( _("spin.bmp"), wxBITMAP_TYPE_BMP );
     wxImage sliderBk;
     sliderBk.LoadFile( _("sliderbk.bmp"), wxBITMAP_TYPE_BMP );
     wxImage sliderInd;
@@ -464,13 +463,9 @@ void wxKeyboard::CreateControls()
 
 	wxBoxSizer* horizTop3 = new wxBoxSizer(wxHORIZONTAL);
 
-#ifdef linux
     wxStaticText* static7 = new wxStaticText( itemDialog1, wxID_STATIC, _("Wave:"), wxDefaultPosition, wxDefaultSize );
-#else
-    wxStaticText* static7 = new wxStaticText( itemDialog1, wxID_STATIC, _("Waveform:"), wxDefaultPosition, wxDefaultSize );
-#endif
     static7->SetForegroundColour(_textColour);
-	horizTop3->Add(static7, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 3);
+	horizTop3->Add(static7, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 4);
 
 	wxArrayString harmonicChoices;
 	harmonicChoices.Add(_("Square"));
@@ -490,8 +485,8 @@ void wxKeyboard::CreateControls()
 #endif
 	horizTop3->Add(_chWaveform, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 3);
 
-     int buttonWidth = 70;
-     int buttonHeight = 20;
+     int buttonWidth = 76;
+     int buttonHeight = 26;
      int buttonMargin = 3;
 #ifdef linux
      buttonHeight = 28;
