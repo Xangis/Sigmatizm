@@ -9,15 +9,19 @@ Contents
 	<li><object type="text/sitemap">
 		<param name="Name" value="Overview">
 		<param name="Local" value="contents.htm">
-		</object>
+	</object></li>
 	<li><object type="text/sitemap">
 		<param name="Name" value="MIDI Settings Dialog">
 		<param name="Local" value="midi.htm">
-		</object>
+		</object></li>
+	<li><object type="text/sitemap">
+			<param name="Name" value="Audio Settings Dialog">
+			<param name="Local" value="audiosettings.htm">
+			</object></li>
 	<li><object type="text/sitemap">
 		<param name="Name" value="Additive Synthesis">
 		<param name="Local" value="additive.htm">
-		</object>
+		</object></li>
 </ul>
 </body>
 </html>

@@ -1704,7 +1704,7 @@ void wxKeyboard::OnInfo( wxCommandEvent& event )
 	// Show about box.
     wxAboutDialogInfo info;
     info.SetVersion(_("1.1"));
-    info.SetCopyright(_("Copyright 2006-2015 Jason Champion"));
+    info.SetCopyright(_("Copyright 2008-2016 Jason Champion"));
 	info.AddDeveloper(_("Jason Champion"));
 	info.SetIcon(_icon);
 #ifdef DEMOVERSION
@@ -1717,7 +1717,7 @@ void wxKeyboard::OnInfo( wxCommandEvent& event )
     info.SetName(_("SigmaTizm VST"));
 	info.SetDescription(_("SigmaTizm uses the wxWidgets libraries."));
 #else
-    info.SetLicense(_("Copyright 2008-2013 Jason Champion\n\nSigmaTizm is proprietary software and may not be distributed without a license.\n\nThe software is provided 'as is', without warranty of any kind,\nexpress or implied, including but not limited to the warranties\nof merchantability, fitness for a particular purpose and\nnoninfringement.  In no event shall the authors or copyright\nholders be liable for any claim, damages or other liability,\nwhether in an action of contract, tort or otherwise, arising\nfrom, out of or in connection with the software or the use\nor other dealings in the software."));
+    info.SetLicense(_("Copyright 2008-2016 Jason Champion\n\nSigmaTizm is proprietary software and may not be distributed without a license.\n\nThe software is provided 'as is', without warranty of any kind,\nexpress or implied, including but not limited to the warranties\nof merchantability, fitness for a particular purpose and\nnoninfringement.  In no event shall the authors or copyright\nholders be liable for any claim, damages or other liability,\nwhether in an action of contract, tort or otherwise, arising\nfrom, out of or in connection with the software or the use\nor other dealings in the software."));
     info.SetName(_("SigmaTizm"));
 	info.SetDescription(_("SigmaTizm uses the wxWidgets, PortAudio, and RtMidi libraries."));
 #endif
