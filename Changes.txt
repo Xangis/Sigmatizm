@@ -1,9 +1,11 @@
-Changes from version 1.0 to 3.1:
+Changes from version 1.0 to 1.1:
 
-- Added white, pink, and brown noise generators.
-- Added random saw, random square, and random triangle generators.
+- Added white, pink, and brown noise waveform generators.
+- Added random saw, random square, and random triangle waveform generators.
 - Changed zoom indicator to read "2x" instead of 0.5.
 - Updated to wxWidgets 3.0 (was 2.8).
+- Updated/improved help file.
+- Added more patch presets.
 
 1.0 Current Features:
 
