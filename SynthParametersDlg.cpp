@@ -16,6 +16,8 @@
 #include "wx/wx.h"
 #endif
 
+#include "spin.xpm"
+
 IMPLEMENT_DYNAMIC_CLASS( SynthParametersDlg, wxPanel )
 
 BEGIN_EVENT_TABLE( SynthParametersDlg, wxPanel )
@@ -100,11 +102,8 @@ void SynthParametersDlg::CreateControls()
 	_targetPolyphony->SetBackgroundColour(_backgroundColour);
     itemBoxSizer5->Add(_targetPolyphony, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-	wxImage spinImage;
+	wxImage spinImage(spin_xpm);
     wxInitAllImageHandlers();
-    //wxString spinPath = wxString::Format(_("%s\\spin.bmp"), wxStandardPaths->Get().GetDataDir().c_str());
-    //spinImage.LoadFile( spinPath, wxBITMAP_TYPE_BMP );
-    spinImage.LoadFile( _("spin.bmp"), wxBITMAP_TYPE_BMP );
     _targetPolyphonySpin = new wxBitmapSpinButton( itemDialog1, ID_TARGETPOLYPHONYSPIN, wxDefaultPosition, wxSize( 16, 22 ), wxSP_ARROW_KEYS );
     _targetPolyphonySpin->SetBitmap( &spinImage );
     itemBoxSizer5->Add(_targetPolyphonySpin, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 3);

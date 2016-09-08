@@ -1,9 +1,8 @@
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/aboutdlg.h"
-#include "wxMidiSettingsDlg.h"
-#include "wxAudioSettings.h"
-#include "AudioUtil.h"
-//#include "MidiUtil.h"
+#include "../wxAudioControls/wxMidiSettingsDlg.h"
+#include "../wxAudioControls/wxAudioSettings.h"
+#include "../StreamingAudioLib/AudioUtil.h"
 #include <vector>
 
 #include "wx/wx.h"
@@ -23,6 +22,7 @@
 #include "btn1sml.xpm"
 #include "btn1lrg.xpm"
 #include "openfolder.xpm"
+#include "spin.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( wxKeyboard, wxDialog )
 
@@ -303,8 +303,7 @@ bool wxKeyboard::Create( wxWindow* parent, wxWindowID id, const wxString& captio
 
 void wxKeyboard::CreateControls()
 {
-    wxImage spinImage;
-    spinImage.LoadFile( _("spin.bmp"), wxBITMAP_TYPE_BMP );
+    wxImage spinImage(spin_xpm);
     wxImage sliderBk;
     sliderBk.LoadFile( _("sliderbk.bmp"), wxBITMAP_TYPE_BMP );
     wxImage sliderInd;
@@ -747,6 +746,7 @@ void wxKeyboard::OnMidiSettings( wxCommandEvent& )
 	wxMidiSettingsDlg* dlg = new wxMidiSettingsDlg(this, this);
     dlg->SetForegroundColour(_textColour);
     dlg->SetBackgroundColour(_backgroundColour);
+	dlg->SetSpinBitmap(spin_xpm);
 	dlg->SetMidiOutputCheckbox(_midiOutputEnabled);
 	dlg->SetMidiInputDeviceIndex(_midiInputDeviceNumber );
 	dlg->SetMidiOutputDeviceIndex(_midiOutputDeviceNumber );
@@ -1369,10 +1369,8 @@ void wxKeyboard::SelectMidiInputDevice(int number)
         _midiInDevice->openPort(number);
         _midiInDevice->setCallback(MidiMessageHandler, this);
     }
-    //catch( RtMidiError &error )
     catch( RtMidiError &error )
     {
-        //wxMessageBox(wxString::FromAscii(error.what()));
         wxMessageBox(wxString::FromAscii(error.what()));
     }
 #endif
@@ -1390,10 +1388,8 @@ void wxKeyboard::SelectMidiOutputDevice(int number)
         _midiOutDevice->closePort();
         _midiOutDevice->openPort(number);
     }
-    //catch( RtMidiError &error )
     catch( RtMidiError &error )
     {
-        //wxMessageBox(wxString::FromAscii(error.what()));
         wxMessageBox(wxString::FromAscii(error.what()));
     }
 #endif
@@ -1532,13 +1528,10 @@ void wxKeyboard::AllControllersOff( void )
 */
 void wxKeyboard::OnLoadConfig( wxCommandEvent& event )
 {
-#ifdef WIN32
 	// This will probably only work right on Windows 7 or newer because XP has a different path structure.
-	wxString path = wxStandardPaths::Get().GetUserConfigDir() + _("\\..\\Local\\Sigmatizm");
+	//wxString path = wxStandardPaths::Get().GetUserConfigDir() + _("\\..\\Local\\Sigmatizm");
+	wxString path = _(".\\Patches");
 	//wxMessageBox(path);
-#else
-	wxString path = _(".//Patches");
-#endif
 	wxFileDialog fdialog( this, _("Load A Config"), path, _(""), _("SigmaTizm Patches (*.sigm) |*.sigm||"), wxFD_OPEN );
 
 	wxString filename;

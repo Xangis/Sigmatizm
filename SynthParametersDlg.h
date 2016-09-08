@@ -2,9 +2,9 @@
 
 #include "wx/wx.h"
 #include "wx/spinctrl.h"
-#include "wxBitmapSpinButton.h"
-#include "wxBitmapSlider.h"
-#include "wxKeylessButton.h"
+#include "../wxAudioControls/wxBitmapSpinButton.h"
+#include "../wxAudioControls/wxBitmapSlider.h"
+#include "../wxAudioControls/wxKeylessButton.h"
 #include "wxHarmonicsPanel.h"
 
 #define ID_SYNTHPARAMETER_DLG 13000

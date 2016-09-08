@@ -46,3 +46,6 @@ _UpgradeReport_Files
 *.opensdf
 *.suo
 *.aps
+ipch
+*.sbr
+*.res
