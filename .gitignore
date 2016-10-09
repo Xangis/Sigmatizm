@@ -10,7 +10,6 @@
 
 # Compiled Dynamic libraries
 *.so
-*.dylib
 *.dll
 
 # Fortran module files
@@ -25,7 +24,6 @@
 # Executables
 *.exe
 *.out
-*.app
 
 # Visual Studio Garbage
 UpgradeLog.XML

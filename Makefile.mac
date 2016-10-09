@@ -3,15 +3,15 @@
 WX_CONFIG := wx-config
 
 # Main executable file
-PROGRAM = Sigmatizm.app/Contents/MacOS/Sigmatizm
+PROGRAM = installer/Sigmatizm.app/Contents/MacOS/Sigmatizm
 
 # Directory containing library portions of code.
 INCLUDEDIR2 = /usr/local/include
-INCLUDEDIR3 = /Users/macuser/Desktop/rtmidi-1.0.11
+INCLUDEDIR3 = ../../lib/rtmidi-2.1.0/
 LIBDIR = /usr/local/lib
 
 # Object files
-OBJECTS = wxMiniWavePanel.o SettingsDlg.o SynthParametersDlg.o wxHarmonicsPanel.o wxkeyboard.o wxkeyboardapp.o ../../rtmidi-1.0.11/RtMidi.o ../wxControls/wxSettingsFile.o ../wxControls/wxBitmapSlider.o ../wxControls/wxMidiSettingsDlg.o ../wxControls/wxVolumeMeter.o ../wxControls/wxSwitch.o ../wxControls/wxKeylessChoice.o ../wxControls/wxOctaveCtrl.o ../wxControls/wxBitmapSpinButton.o ../wxControls/wxKeylessButton.o ../wxControls/wxKeylessBitmapButton.o ../StreamingAudioLib/AudioUtil.o ../StreamingAudioLib/Wavetable.o ../wxControls/wxAudioSettings.o
+OBJECTS = wxMiniWavePanel.o SettingsDlg.o SynthParametersDlg.o wxHarmonicsPanel.o wxkeyboard.o wxkeyboardapp.o $(INCLUDEDIR3)/RtMidi.o ../wxAudioControls/wxSettingsFile.o ../wxAudioControls/wxBitmapSlider.o ../wxAudioControls/wxMidiSettingsDlg.o ../wxAudioControls/wxVolumeMeter.o ../wxAudioControls/wxSwitch.o ../wxAudioControls/wxKeylessChoice.o ../wxAudioControls/wxOctaveCtrl.o ../wxAudioControls/wxBitmapSpinButton.o ../wxAudioControls/wxKeylessButton.o ../wxAudioControls/wxKeylessBitmapButton.o ../StreamingAudioLib/AudioUtil.o ../StreamingAudioLib/Wavetable.o ../wxAudioControls/wxAudioSettings.o
 
 CXX = $(shell $(WX_CONFIG) --cxx -ggdb)
 

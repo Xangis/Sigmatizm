@@ -59,7 +59,7 @@ void SettingsDlg::CreateControls()
 
     wxStaticText* itemStaticText3 = new wxStaticText( itemDialog1, wxID_STATIC, _("Number of Octaves:"), wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText3->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(itemStaticText3, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(itemStaticText3, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _spnNumOctaves = new wxSpinCtrl( itemDialog1, ID_SPN_NUMOCTAVES, _T("7"), wxDefaultPosition, wxSize(54, -1), wxSP_ARROW_KEYS, 3, 7, 64 );
     itemBoxSizer3->Add(_spnNumOctaves, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);

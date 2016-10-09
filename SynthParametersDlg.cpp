@@ -90,8 +90,8 @@ void SynthParametersDlg::CreateControls()
 	itemBoxSizer2->Add(sizer8, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 0);
 
 	wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-	itemBoxSizer5->Add(_peakLevelText, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
-    itemBoxSizer5->Add(_polyphonyText, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+	itemBoxSizer5->Add(_peakLevelText, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    itemBoxSizer5->Add(_polyphonyText, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     wxStaticText* static3 = new wxStaticText( itemDialog1, wxID_STATIC, _("Target Polyphony:"), wxDefaultPosition, wxDefaultSize );
     static3->SetForegroundColour(_textColour);
