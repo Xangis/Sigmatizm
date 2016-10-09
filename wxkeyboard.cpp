@@ -254,11 +254,21 @@ bool wxKeyboard::Create( wxWindow* parent, wxWindowID id, const wxString& captio
 
 	wxFileSystem::AddHandler(new wxZipFSHandler);
 	_helpCtrl = new wxHtmlHelpController(wxHF_CONTENTS);
-	if( !_helpCtrl->AddBook(_("sigmatizm.htb")))
-	{
-		wxMessageBox( _("Unable to load help file.  Please make sure that sigmatizm.htb is in the program directory.") );
-	}
-	if( _icon.LoadFile(_T("sigmatizm.ico"), wxBITMAP_TYPE_ICO ))
+#ifndef __APPLE__
+    wxString helpFile = _("sigmatizm.htb");
+#else
+    wxString helpFile = wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("sigmatizm.htb"));
+#endif
+    if( !_helpCtrl->AddBook(helpFile))
+    {
+        wxMessageBox( _("Unable to load help file.  Please make sure that sigmatizm.htb is in the program directory.") );
+    }
+#ifndef __APPLE__
+        wxString filepath = _("sigmatizm.ico");
+#else
+        wxString filepath = wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("sigmatizm.ico"));
+#endif
+	if( _icon.LoadFile(filepath, wxBITMAP_TYPE_ICO ))
 	{
 		SetIcon(_icon);
 	}
@@ -305,13 +315,20 @@ void wxKeyboard::CreateControls()
 {
     wxImage spinImage(spin_xpm);
     wxImage sliderBk;
-    sliderBk.LoadFile( _("sliderbk.bmp"), wxBITMAP_TYPE_BMP );
     wxImage sliderInd;
-    sliderInd.LoadFile( _("sliderind.bmp"), wxBITMAP_TYPE_BMP );
     wxImage hsliderBk;
-    hsliderBk.LoadFile( _("hsliderbk.bmp"), wxBITMAP_TYPE_BMP );
     wxImage hsliderInd;
+#ifndef __APPLE__
+    sliderBk.LoadFile( _("sliderbk.bmp"), wxBITMAP_TYPE_BMP );
+    sliderInd.LoadFile( _("sliderind.bmp"), wxBITMAP_TYPE_BMP );
+    hsliderBk.LoadFile( _("hsliderbk.bmp"), wxBITMAP_TYPE_BMP );
     hsliderInd.LoadFile( _("hsliderind.bmp"), wxBITMAP_TYPE_BMP );
+#else
+    sliderBk.LoadFile(wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("sliderbk.bmp")), wxBITMAP_TYPE_BMP );
+    sliderInd.LoadFile(wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("sliderind.bmp")), wxBITMAP_TYPE_BMP );
+    hsliderBk.LoadFile(wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("hsliderbk.bmp")), wxBITMAP_TYPE_BMP );
+    hsliderInd.LoadFile(wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("hsliderind.bmp")), wxBITMAP_TYPE_BMP );
+#endif
 
 #ifdef __WXMAC__
     // Required for the background color to take.
@@ -353,7 +370,7 @@ void wxKeyboard::CreateControls()
 
 	wxStaticText* staticText1 = new wxStaticText( itemDialog1, wxID_STATIC, _("Attack (msec):"), wxDefaultPosition, wxDefaultSize, 0 );
     staticText1->SetForegroundColour(_textColour);
-    toprightsizer->Add(staticText1, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(staticText1, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slAttack = new wxBitmapSlider( itemDialog1, ID_ADSR_ATTACK, 0, 0, 1000, wxDefaultPosition, wxSize(211,24) );
 	_slAttack->SetBitmaps(&hsliderBk, &hsliderInd);
@@ -363,11 +380,11 @@ void wxKeyboard::CreateControls()
     _txtAttack = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
     _txtAttack->SetForegroundColour(_textColour);
 	_txtAttack->SetLabel(wxString::Format(_("%3d"), _adsrParameters.attackTimeMsec ));
-    toprightsizer->Add(_txtAttack, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(_txtAttack, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     wxStaticText* staticText2 = new wxStaticText( itemDialog1, wxID_STATIC, _("Decay (msec):"), wxDefaultPosition, wxDefaultSize, 0 );
     staticText2->SetForegroundColour(_textColour);
-    toprightsizer->Add(staticText2, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(staticText2, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slDecay = new wxBitmapSlider( itemDialog1, ID_ADSR_DECAY, 0, 0, 1000, wxDefaultPosition, wxSize(211,24));
 	_slDecay->SetBitmaps(&hsliderBk, &hsliderInd);
@@ -377,11 +394,11 @@ void wxKeyboard::CreateControls()
     _txtDecay = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
     _txtDecay->SetForegroundColour(_textColour);
 	_txtDecay->SetLabel(wxString::Format(_("%3d"), _adsrParameters.decayTimeMsec ));
-    toprightsizer->Add(_txtDecay, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(_txtDecay, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxStaticText* staticText3 = new wxStaticText( itemDialog1, wxID_STATIC, _("Sustain (percent):"), wxDefaultPosition, wxDefaultSize, 0 );
     staticText3->SetForegroundColour(_textColour);
-    toprightsizer->Add(staticText3, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(staticText3, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slSustain = new wxBitmapSlider( itemDialog1, ID_ADSR_SUSTAIN, 0, 0, 100, wxDefaultPosition, wxSize(211,24));
 	_slSustain->SetBitmaps(&hsliderBk, &hsliderInd);
@@ -391,11 +408,11 @@ void wxKeyboard::CreateControls()
     _txtSustain = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
     _txtSustain->SetForegroundColour(_textColour);
 	_txtSustain->SetLabel(wxString::Format(_("%3d"), _adsrParameters.sustainLevelPercent ));
-    toprightsizer->Add(_txtSustain, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(_txtSustain, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxStaticText* staticText4 = new wxStaticText( itemDialog1, wxID_STATIC, _("Release (msec):"), wxDefaultPosition, wxDefaultSize, 0 );
     staticText4->SetForegroundColour(_textColour);
-    toprightsizer->Add(staticText4, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(staticText4, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slRelease = new wxBitmapSlider( itemDialog1, ID_ADSR_RELEASE, 0, 0, 1000, wxDefaultPosition, wxSize(211,24));
 	_slRelease->SetBitmaps(&hsliderBk, &hsliderInd);
@@ -405,11 +422,11 @@ void wxKeyboard::CreateControls()
     _txtRelease = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
     _txtRelease->SetForegroundColour(_textColour);
 	_txtRelease->SetLabel(wxString::Format(_("%3d"), _adsrParameters.releaseTimeMsec ));
-    toprightsizer->Add(_txtRelease, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(_txtRelease, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxStaticText* staticText5 = new wxStaticText( itemDialog1, wxID_STATIC, _("LFO Freq (Hz):"), wxDefaultPosition, wxDefaultSize, 0 );
     staticText5->SetForegroundColour(_textColour);
-    toprightsizer->Add(staticText5, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(staticText5, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slFrequency = new wxBitmapSlider( itemDialog1, ID_LFO_FREQUENCY, 0, 0, 200, wxDefaultPosition, wxSize(211,24) );
 	_slFrequency->SetBitmaps(&hsliderBk, &hsliderInd);
@@ -423,7 +440,7 @@ void wxKeyboard::CreateControls()
 
     wxStaticText* staticText6 = new wxStaticText( itemDialog1, wxID_STATIC, _("LFO Waveform:"), wxDefaultPosition, wxDefaultSize, 0 );
     staticText6->SetForegroundColour(_textColour);
-    toprightsizer->Add(staticText6, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    toprightsizer->Add(staticText6, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxArrayString choices;
     for( int i = 0; i < _waveTable->GetNumWaveforms(); i++ )
@@ -604,7 +621,7 @@ void wxKeyboard::CreateControls()
 	wxStaticText* itemStaticText4 = new wxStaticText( itemDialog1, wxID_STATIC, _("Bank"), wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText4->SetForegroundColour(_textColour);
 	itemStaticText4->Connect(wxID_STATIC, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
-    horizTop3->Add(itemStaticText4, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    horizTop3->Add(itemStaticText4, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _bankText = new wxStaticText( itemDialog1, ID_BANKTEXT, _T("1  "), wxDefaultPosition, wxSize( 22, -1 ), 0 );
     _bankText->SetForegroundColour(_textColour);
@@ -621,7 +638,7 @@ void wxKeyboard::CreateControls()
     wxStaticText* itemStaticText8 = new wxStaticText( itemDialog1, wxID_STATIC, _("Patch"), wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText8->SetForegroundColour(_textColour);
 	itemStaticText8->Connect(wxID_STATIC, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
-    horizTop3->Add(itemStaticText8, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    horizTop3->Add(itemStaticText8, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _patchText = new wxStaticText( itemDialog1, ID_PATCHTEXT, _("1  "), wxDefaultPosition, wxSize( 22, -1 ), 0 );
     _patchText->SetForegroundColour(_textColour);
@@ -652,14 +669,20 @@ void wxKeyboard::CreateControls()
 	_modWheel->Connect(ID_MODWHEEL, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_modWheel->Connect(ID_MODWHEEL, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
 
-    wxBitmap _octaveBitmap(GetBitmapResource(wxT("octave.bmp")));
-	wxBitmap* keyind1sml = new wxBitmap(btn1sml_xpm);
-	wxBitmap* keyind1lrg = new wxBitmap(btn1lrg_xpm);
+#ifndef __APPLE__
+    wxString octavePath = _("octave.bmp");
+#else
+    wxString octavePath = wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("octave.bmp"));
+#endif
+    wxBitmap _octaveBitmap;
+    _octaveBitmap.LoadFile(octavePath, wxBITMAP_TYPE_BMP);
+    wxBitmap* keyind1sml = new wxBitmap(btn1sml_xpm);
+    wxBitmap* keyind1lrg = new wxBitmap(btn1lrg_xpm);
     _octave[0] = new wxOctaveCtrl( itemDialog1, ID_KEYBOARD1, _octaveBitmap, 24, this, wxDefaultPosition, wxSize(137, 99), wxNO_BORDER );
     itemBoxSizer12->Add(_octave[0], 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
-	_octave[0]->SetBitmaps(keyind1sml, keyind1lrg);
-	_octave[0]->Connect(ID_KEYBOARD1, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_octave[0]->Connect(ID_KEYBOARD1, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+    _octave[0]->SetBitmaps(keyind1sml, keyind1lrg);
+    _octave[0]->Connect(ID_KEYBOARD1, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
+    _octave[0]->Connect(ID_KEYBOARD1, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
 
     _octave[1] = new wxOctaveCtrl( itemDialog1, ID_KEYBOARD2, _octaveBitmap, 36, this, wxDefaultPosition, wxSize(137, 99), wxNO_BORDER );
     itemBoxSizer12->Add(_octave[1], 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
@@ -1809,13 +1832,13 @@ int wxKeyboard::RenderAudio( const void *input, void *output, unsigned long fram
 		// Apply volume adjustment and then soft-clip as necessary.
 		buffer[pos] = /*tanh*/(buffer[pos] * _masterVolume);
 		buffer[pos + 1] = /*tanh*/(buffer[pos + 1] * _masterVolume);
-		if( abs(buffer[pos]) > maxLeft )
+		if( fabs(buffer[pos]) > maxLeft )
 		{
-			maxLeft = abs(buffer[pos]);
+			maxLeft = fabs(buffer[pos]);
 		}
-		if( abs(buffer[pos + 1]) > maxRight )
+		if( fabs(buffer[pos + 1]) > maxRight )
 		{
-			maxRight = abs(buffer[pos+1]);
+			maxRight = fabs(buffer[pos+1]);
 		}
 	}
 
