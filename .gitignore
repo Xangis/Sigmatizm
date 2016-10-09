@@ -49,3 +49,5 @@ _UpgradeReport_Files
 ipch
 *.sbr
 *.res
+*.def
+

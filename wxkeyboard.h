@@ -39,6 +39,7 @@
 #include "audioeffectx.h"
 #endif
 #include "wxMiniWavePanel.h"
+#include "../AudioEffect/DelayEffect.h"
 #define INITGUID
 
 /*!
@@ -223,6 +224,7 @@ public:
 	// End MidiSettingsInterface methods.
 	bool _done;
 private:
+	DelayEffect* _delayEffect;
 	float _millisecondsPerSample;
 	wxMiniWavePanel* _initialWave;
 	wxMiniWavePanel* _finalWave;

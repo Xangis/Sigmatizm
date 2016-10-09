@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioFile", "..\AudioFile\A
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxAudioControls", "..\wxAudioControls\wxAudioControls.vcxproj", "{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioEffect", "..\AudioEffect\AudioEffect.vcxproj", "{F2292F28-7E97-40A9-B040-FFCB53BEE516}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -61,6 +63,16 @@ Global
 		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Demo Release|Win32.Build.0 = Demo Release|Win32
 		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Release|Win32.ActiveCfg = Release|Win32
 		{8A0DF122-86C7-4FEB-901E-CEEF329ADF9D}.Release|Win32.Build.0 = Release|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Debug|Win32.Build.0 = Debug|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Demo Debug VST|Win32.ActiveCfg = Demo Debug|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Demo Debug VST|Win32.Build.0 = Demo Debug|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Demo Debug|Win32.ActiveCfg = Demo Debug|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Demo Debug|Win32.Build.0 = Demo Debug|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Demo Release|Win32.ActiveCfg = Demo Release|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Demo Release|Win32.Build.0 = Demo Release|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Release|Win32.ActiveCfg = Release|Win32
+		{F2292F28-7E97-40A9-B040-FFCB53BEE516}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
