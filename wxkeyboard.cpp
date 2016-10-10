@@ -2279,9 +2279,13 @@ void wxKeyboard::OnRelease( wxScrollEvent& event )
 void wxKeyboard::OnSettings( wxCommandEvent& event )
 {
     wxAudioSettings* dlg = new wxAudioSettings(this, this);
-    dlg->SetForegroundColour(_textColour);
-    dlg->SetBackgroundColour(_backgroundColour);
-    dlg->ShowModal();
+    if( dlg != NULL )
+    {
+        dlg->SetForegroundColour(_textColour);
+        dlg->SetBackgroundColour(_backgroundColour);
+        dlg->ShowInputDevice(false);
+        dlg->ShowModal();
+    }
     ResetFocus();
     event.Skip();
 }

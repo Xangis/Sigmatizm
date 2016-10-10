@@ -23,7 +23,7 @@ CXX = $(shell $(WX_CONFIG) --cxx -ggdb)
 all:    $(PROGRAM)
 
 $(PROGRAM):	$(OBJECTS)
-	$(CXX) -o $(PROGRAM) $(OBJECTS) -L$(LIBDIR) `$(WX_CONFIG) --libs` -framework CoreMidi -framework CoreAudio -framework CoreFoundation -lportaudio
+	$(CXX) -D__MACOSX_CORE__ -o $(PROGRAM) $(OBJECTS) -L$(LIBDIR) `$(WX_CONFIG) --libs` -framework CoreMidi -framework CoreAudio -framework CoreFoundation -lportaudio
 
 clean: 
 	rm -f *.o ../wxAudioControls/*.o ../AudioEffect/*.o $(PROGRAM)
