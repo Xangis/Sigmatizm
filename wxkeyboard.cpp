@@ -279,23 +279,30 @@ bool wxKeyboard::Create( wxWindow* parent, wxWindowID id, const wxString& captio
 
 #ifndef VST
     // Open default MIDI devices.
-    int numDevices = _midiInDevice->getPortCount();
-    if( numDevices > 0 )
+    int numInDevices = _midiInDevice->getPortCount();
+    if( numInDevices > 0 )
     {
 	    SelectMidiInputDevice(_midiInputDeviceNumber);
     }
-    else
-    {
-	    wxMessageBox(_("No MIDI input devices detected.  MIDI input is disabled."));
-    }
-    numDevices = _midiOutDevice->getPortCount();
-    if( numDevices > 0 )
+    int numOutDevices = _midiOutDevice->getPortCount();
+    if( numOutDevices > 0 )
     {
 	    SelectMidiOutputDevice(_midiOutputDeviceNumber);
     }
-    else
+
+    if( numOutDevices < 1 || numInDevices < 1 )
     {
-	    wxMessageBox(_("No MIDI output devices detected.  MIDI output is disabled."));
+        wxString in = _("");
+        wxString out = _("");
+        if( numInDevices < 1 )
+        {
+            in = _("No MIDI input devices detected.  MIDI input is disabled.");
+        }
+        if( numOutDevices < 1 )
+        {
+            out = _("No MIDI output devices detected.  MIDI output is disabled.");
+        }
+        wxMessageBox(wxString::Format(_("%s\n\n%s"), in, out ));
     }
 
     PaError err = Pa_Initialize();
@@ -364,23 +371,23 @@ void wxKeyboard::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     itemDialog1->SetSizer(itemBoxSizer2);
 
-	wxBoxSizer* horizTop = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* horizTop = new wxBoxSizer(wxHORIZONTAL);
 
     // Show synth parameter edit dialog.
     _timbrePanel = new SynthParametersDlg(this);
-	_timbrePanel->SetHarmonicsCallback(this);
-	horizTop->Add(_timbrePanel, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    _timbrePanel->SetHarmonicsCallback(this);
+    horizTop->Add(_timbrePanel, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-	wxBoxSizer* sizer14 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* sizer14 = new wxBoxSizer(wxVERTICAL);
     _txtZoomLevel = new wxStaticText( itemDialog1, wxID_STATIC, _("2x"), wxDefaultPosition, wxDefaultSize );
     _txtZoomLevel->SetForegroundColour(_textColour);
-	sizer14->Add(_txtZoomLevel, 0, wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL|wxALL, 7);
+    sizer14->Add(_txtZoomLevel, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 7);
 
 	_slZoomLevel = new wxSlider( itemDialog1, ID_ZOOM_LEVEL, 2, 1, 10, wxDefaultPosition, wxSize(-1, 290), wxVERTICAL );
 	_slZoomLevel->SetBackgroundColour(_backgroundColour);
 	_slZoomLevel->SetForegroundColour(_textColour);
 	_slZoomLevel->Connect(ID_ZOOM_LEVEL, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnSliderRelease), NULL, this);
-	sizer14->Add(_slZoomLevel, 0, wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL|wxALL, 2);
+	sizer14->Add(_slZoomLevel, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 2);
 	horizTop->Add(sizer14, 0, wxALIGN_LEFT|wxALIGN_TOP, 1);
 
 	wxBoxSizer* vertTop = new wxBoxSizer(wxVERTICAL);
@@ -492,15 +499,15 @@ void wxKeyboard::CreateControls()
     text10->SetForegroundColour(_textColour);
     waveSizer->Add(text10, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 3);
 
-	vertTop->Add(waveSizer, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	vertTop->Add(waveSizer, 0, wxALIGN_CENTER_HORIZONTAL, 0);
     horizTop->Add(vertTop, 0, wxALIGN_LEFT|wxALIGN_TOP, 0);
-	itemBoxSizer2->Add(horizTop, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 0);
+	itemBoxSizer2->Add(horizTop, 0, wxALIGN_LEFT, 0);
 
-	wxBoxSizer* horizTop3 = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* horizTop3 = new wxBoxSizer(wxHORIZONTAL);
 
     wxStaticText* static7 = new wxStaticText( itemDialog1, wxID_STATIC, _("Wave:"), wxDefaultPosition, wxDefaultSize );
     static7->SetForegroundColour(_textColour);
-	horizTop3->Add(static7, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    horizTop3->Add(static7, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 4);
 
 	wxArrayString harmonicChoices;
 	harmonicChoices.Add(_("Square"));
@@ -522,19 +529,19 @@ void wxKeyboard::CreateControls()
 
 	_btnGenerate = new wxKeylessButton( itemDialog1, ID_BUTTON_GENERATE, _T("Generate" ), wxDefaultPosition, wxSize(buttonWidth, buttonHeight));
     _btnGenerate->SetToolTip(_("Generate harmonics for the selected waveform"));
-    horizTop3->Add(_btnGenerate, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
+    horizTop3->Add(_btnGenerate, 0, wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
 
     _btnClear = new wxKeylessButton( itemDialog1, ID_BUTTON_CLEAR, _T("Clear" ), wxDefaultPosition, wxSize(buttonWidth, buttonHeight));
     _btnClear->SetToolTip(_("Clear harmonic levels"));
-    horizTop3->Add(_btnClear, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
+    horizTop3->Add(_btnClear, 0, wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
 
 	_btnNormalize = new wxKeylessButton( itemDialog1, ID_BUTTON_NORMALIZE, _T("Normalize" ), wxDefaultPosition, wxSize(buttonWidth, buttonHeight));
     _btnNormalize->SetToolTip(_("Normalize harmonic levels for target polyphony"));
-    horizTop3->Add(_btnNormalize, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
+    horizTop3->Add(_btnNormalize, 0, wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
 
 	_btnInitial = new wxKeylessButton( itemDialog1, ID_BUTTON_INITIAL, _T("Attack" ), wxDefaultPosition, wxSize(buttonWidth, buttonHeight));
     _btnInitial->SetToolTip(_("Edit attack harmonics"));
-    horizTop3->Add(_btnInitial, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
+    horizTop3->Add(_btnInitial, 0, wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
 
 	_btnLeft = new wxKeylessBitmapButton(itemDialog1, ID_BUTTON_LEFT, wxBitmap(left_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight));
     _btnLeft->SetToolTip(_("Copy final harmonics into initial harmonics"));
@@ -543,12 +550,12 @@ void wxKeyboard::CreateControls()
     _btnRight->SetToolTip(_("Copy initial harmonics into final harmonics"));
 	horizTop3->Add(_btnRight, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
 
-	_btnFinal = new wxKeylessButton( itemDialog1, ID_BUTTON_FINAL, _T("Sustain" ), wxDefaultPosition, wxSize(buttonWidth, buttonHeight));
+    _btnFinal = new wxKeylessButton( itemDialog1, ID_BUTTON_FINAL, _T("Sustain" ), wxDefaultPosition, wxSize(buttonWidth, buttonHeight));
     _btnFinal->SetToolTip(_("Edit sustain harmonics"));
     // Make the sustain edit panel visible.
-	_btnFinal->Enable(false);
+    _btnFinal->Enable(false);
     _timbrePanel->GetHarmonicPanel()->SetInitialVisible(false);
-    horizTop3->Add(_btnFinal, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
+    horizTop3->Add(_btnFinal, 0, wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
 
 	_panicButton = new wxKeylessBitmapButton( itemDialog1, ID_PANICBUTTON, wxBitmap(exclamation_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_panicButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
@@ -608,12 +615,12 @@ void wxKeyboard::CreateControls()
 	wxBoxSizer* itemBoxSizer3b = new wxBoxSizer(wxVERTICAL);
 	_volumeMeterL = new wxVolumeMeter( itemDialog1, ID_VOLUME_LEFT, 100, wxDefaultPosition, wxSize(100, 13));
 	_volumeMeterL->Connect(ID_VOLUME_LEFT, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
-	itemBoxSizer3b->Add(_volumeMeterL, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
+	itemBoxSizer3b->Add(_volumeMeterL, 0, wxALL, 1);
 
 	_volumeMeterR = new wxVolumeMeter( itemDialog1, ID_VOLUME_RIGHT, 100, wxDefaultPosition, wxSize(100, 13));
 	_volumeMeterR->Connect(ID_VOLUME_RIGHT, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
 	itemBoxSizer3b->Add(_volumeMeterR, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
-	horizTop3->Add(itemBoxSizer3b, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
+	horizTop3->Add(itemBoxSizer3b, 0, wxALL, 1);
 #endif
 
 #ifndef VST
@@ -659,20 +666,20 @@ void wxKeyboard::CreateControls()
 	_patchSpin->SetToolTip( _("Change patch number") );
 	horizTop3->Add(_patchSpin, 0, wxALIGN_CENTER_VERTICAL|wxALL, 2 );
 
-	itemBoxSizer2->Add(horizTop3, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 0);
+	itemBoxSizer2->Add(horizTop3, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 0);
 
     wxBoxSizer* itemBoxSizer12 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer12, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5);
 
 	_pitchWheel = new wxBitmapSlider( itemDialog1, ID_PITCHWHEEL, 8192, 0, 16383, wxDefaultPosition, wxSize( 30, 108 ), wxSL_VERTICAL|wxSL_INVERSE );
     _pitchWheel->SetBitmaps( &sliderBk, &sliderInd );
-    itemBoxSizer12->Add( _pitchWheel, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+    itemBoxSizer12->Add( _pitchWheel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	_pitchWheel->Connect(ID_PITCHWHEEL, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_pitchWheel->Connect(ID_PITCHWHEEL, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
 
 	_modWheel = new wxBitmapSlider( itemDialog1, ID_MODWHEEL, 0, 0, 16383, wxDefaultPosition, wxSize( 30, 108 ), wxSL_VERTICAL|wxSL_INVERSE );
 	_modWheel->SetBitmaps( &sliderBk, &sliderInd );
-	itemBoxSizer12->Add( _modWheel, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	itemBoxSizer12->Add( _modWheel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	_modWheel->Connect(ID_MODWHEEL, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_modWheel->Connect(ID_MODWHEEL, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
 
@@ -2271,11 +2278,10 @@ void wxKeyboard::OnRelease( wxScrollEvent& event )
 */
 void wxKeyboard::OnSettings( wxCommandEvent& event )
 {
-	wxAudioSettings* dlg = new wxAudioSettings(this, this);
+    wxAudioSettings* dlg = new wxAudioSettings(this, this);
     dlg->SetForegroundColour(_textColour);
     dlg->SetBackgroundColour(_backgroundColour);
-	dlg->SetMidiOutputDeviceIndex(_midiOutputDeviceNumber + 1 );
-	dlg->ShowModal();
+    dlg->ShowModal();
     ResetFocus();
     event.Skip();
 }
