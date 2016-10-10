@@ -334,6 +334,21 @@ void wxKeyboard::CreateControls()
     hsliderInd.LoadFile(wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("hsliderind.bmp")), wxBITMAP_TYPE_BMP );
 #endif
 
+     int buttonWidth = 76;
+     int buttonHeight = 26;
+     int buttonMargin = 3;
+#ifdef linux
+     buttonHeight = 28;
+     buttonWidth = 84;
+     buttonMargin = 1;
+#endif
+#ifdef __WXMAC__
+     buttonHeight = 28;
+     buttonWidth = 84;
+     buttonMargin = 1;
+#endif
+
+
 #ifdef __WXMAC__
     // Required for the background color to take.
     wxPanel* itemDialog1 = new wxPanel(this);
@@ -451,7 +466,7 @@ void wxKeyboard::CreateControls()
     {
         choices.Add(wxString::FromAscii(_waveTable->GetWaveformName(i)));
     }
-	_chLFOWaveform = new wxKeylessChoice( itemDialog1, ID_LFO_WAVEFORM, wxDefaultPosition, wxSize(200,28), choices);
+	_chLFOWaveform = new wxKeylessChoice( itemDialog1, ID_LFO_WAVEFORM, wxDefaultPosition, wxSize(200,buttonHeight), choices);
 	_chLFOWaveform->SetSelection(_lfoParameters.lfoWaveform);
 #ifdef WIN32
     _chLFOWaveform->SetForegroundColour(_textColour);
@@ -497,25 +512,13 @@ void wxKeyboard::CreateControls()
 	harmonicChoices.Add(_("Random Square"));
 	harmonicChoices.Add(_("Random Saw"));
 	harmonicChoices.Add(_("Random Triangle"));
-	_chWaveform = new wxKeylessChoice( itemDialog1, ID_CHOICE_WAVEFORM, wxDefaultPosition, wxSize(90,28), harmonicChoices);
+	_chWaveform = new wxKeylessChoice( itemDialog1, ID_CHOICE_WAVEFORM, wxDefaultPosition, wxSize(90,buttonHeight), harmonicChoices);
 	_chWaveform->SetSelection(0);
 #ifdef WIN32
 	_chWaveform->SetForegroundColour(_textColour);
 	_chWaveform->SetBackgroundColour(_backgroundColour);
 #endif
 	horizTop3->Add(_chWaveform, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 3);
-
-     int buttonWidth = 76;
-     int buttonHeight = 26;
-     int buttonMargin = 3;
-#ifdef linux
-     buttonHeight = 28;
-     buttonWidth = 84;
-     buttonMargin = 1;
-#endif
-#ifdef __WXMAC__
-     buttonWidth = -1;
-#endif
 
 	_btnGenerate = new wxKeylessButton( itemDialog1, ID_BUTTON_GENERATE, _T("Generate" ), wxDefaultPosition, wxSize(buttonWidth, buttonHeight));
     _btnGenerate->SetToolTip(_("Generate harmonics for the selected waveform"));
@@ -533,10 +536,10 @@ void wxKeyboard::CreateControls()
     _btnInitial->SetToolTip(_("Edit attack harmonics"));
     horizTop3->Add(_btnInitial, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
 
-	_btnLeft = new wxKeylessBitmapButton(itemDialog1, ID_BUTTON_LEFT, wxBitmap(left_xpm), wxDefaultPosition, wxSize(28,28));
+	_btnLeft = new wxKeylessBitmapButton(itemDialog1, ID_BUTTON_LEFT, wxBitmap(left_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight));
     _btnLeft->SetToolTip(_("Copy final harmonics into initial harmonics"));
 	horizTop3->Add(_btnLeft, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
-	_btnRight = new wxKeylessBitmapButton(itemDialog1, ID_BUTTON_RIGHT, wxBitmap(right_xpm), wxDefaultPosition, wxSize(28,28));
+	_btnRight = new wxKeylessBitmapButton(itemDialog1, ID_BUTTON_RIGHT, wxBitmap(right_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight));
     _btnRight->SetToolTip(_("Copy initial harmonics into final harmonics"));
 	horizTop3->Add(_btnRight, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
 
@@ -547,21 +550,21 @@ void wxKeyboard::CreateControls()
     _timbrePanel->GetHarmonicPanel()->SetInitialVisible(false);
     horizTop3->Add(_btnFinal, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, buttonMargin );
 
-	_panicButton = new wxKeylessBitmapButton( itemDialog1, ID_PANICBUTTON, wxBitmap(exclamation_xpm), wxDefaultPosition, wxSize( 28, 28 ) );
+	_panicButton = new wxKeylessBitmapButton( itemDialog1, ID_PANICBUTTON, wxBitmap(exclamation_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_panicButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
 	_panicButton->Connect(ID_PANICBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_panicButton->Connect(ID_PANICBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
 	_panicButton->Connect(ID_PANICBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
     _panicButton->SetToolTip(_("Panic: Send all notes off MIDI message"));
 
-	_infoButton = new wxKeylessBitmapButton( itemDialog1, ID_INFOBUTTON, wxBitmap(info_xpm), wxDefaultPosition, wxSize( 28, 28 ) );
+	_infoButton = new wxKeylessBitmapButton( itemDialog1, ID_INFOBUTTON, wxBitmap(info_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_infoButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
 	_infoButton->Connect(ID_INFOBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_infoButton->Connect(ID_INFOBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
 	_infoButton->Connect(ID_INFOBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
     _infoButton->SetToolTip(_("About SigmaTizm"));
 
-	_helpButton = new wxKeylessBitmapButton( itemDialog1, ID_HELPBUTTON, wxBitmap(help_xpm), wxDefaultPosition, wxSize( 28, 28 ) );
+	_helpButton = new wxKeylessBitmapButton( itemDialog1, ID_HELPBUTTON, wxBitmap(help_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_helpButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
 	_helpButton->Connect(ID_HELPBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_helpButton->Connect(ID_HELPBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
@@ -569,7 +572,7 @@ void wxKeyboard::CreateControls()
     _helpButton->SetToolTip(_("Help"));
 
 #ifndef VST
-	_settingsButton = new wxKeylessBitmapButton( itemDialog1, ID_BUTTON_SETTINGS, wxBitmap(wrench_xpm), wxDefaultPosition, wxSize( 28, 28 ) );
+	_settingsButton = new wxKeylessBitmapButton( itemDialog1, ID_BUTTON_SETTINGS, wxBitmap(wrench_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_settingsButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
 	_settingsButton->Connect(ID_BUTTON_SETTINGS, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_settingsButton->Connect(ID_BUTTON_SETTINGS, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
@@ -578,7 +581,7 @@ void wxKeyboard::CreateControls()
 #endif
 
 	//wxBitmap filterBitmap( "filter.xpm", wxBITMAP_TYPE_XPM );
-	//_filterButton = new wxBitmapButton( itemDialog1, ID_FILTERBUTTON, filterBitmap, wxDefaultPosition, wxSize( 22, 22 ) );
+	//_filterButton = new wxBitmapButton( itemDialog1, ID_FILTERBUTTON, filterBitmap, wxDefaultPosition, wxSize( buttonHeight, buttonHeight ) );
 	//itemBoxSizer3->Add(_filterButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 3 );
 	//_filterButton->Connect(ID_FILTERBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	//_filterButton->Connect(ID_FILTERBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
@@ -586,7 +589,7 @@ void wxKeyboard::CreateControls()
  //   _filterButton->SetToolTip("Edit filter settings");
 
 #ifndef DEMOVERSION
-	_saveButton = new wxKeylessBitmapButton( itemDialog1, ID_SAVEBUTTON, wxBitmap(disk_xpm), wxDefaultPosition, wxSize( 28, 28 ) );
+	_saveButton = new wxKeylessBitmapButton( itemDialog1, ID_SAVEBUTTON, wxBitmap(disk_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_saveButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
 	_saveButton->Connect(ID_SAVEBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_saveButton->Connect(ID_SAVEBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
@@ -594,7 +597,7 @@ void wxKeyboard::CreateControls()
     _saveButton->SetToolTip(_("Save Synthesizer Configuration to Disk"));
 #endif
 
-	_loadButton = new wxKeylessBitmapButton( itemDialog1, ID_LOADBUTTON, wxBitmap(openfolder_xpm), wxDefaultPosition, wxSize( 28, 28 ) );
+	_loadButton = new wxKeylessBitmapButton( itemDialog1, ID_LOADBUTTON, wxBitmap(openfolder_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_loadButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
 	_loadButton->Connect(ID_LOADBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_loadButton->Connect(ID_LOADBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
@@ -614,7 +617,7 @@ void wxKeyboard::CreateControls()
 #endif
 
 #ifndef VST
-	_midiButton = new wxKeylessBitmapButton( itemDialog1, ID_MIDIBUTTON, wxBitmap(midiport_xpm), wxDefaultPosition, wxSize( 28, 28 ) );
+	_midiButton = new wxKeylessBitmapButton( itemDialog1, ID_MIDIBUTTON, wxBitmap(midiport_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_midiButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
 	_midiButton->Connect(ID_MIDIBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
 	_midiButton->Connect(ID_MIDIBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
