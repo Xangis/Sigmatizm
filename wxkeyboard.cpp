@@ -1569,7 +1569,11 @@ void wxKeyboard::OnLoadConfig( wxCommandEvent& event )
 	//wxString path = wxStandardPaths::Get().GetUserConfigDir() + _("\\..\\Local\\Sigmatizm");
 	wxString path = _(".\\Patches");
 	//wxMessageBox(path);
+#ifndef __APPLE__
 	wxFileDialog fdialog( this, _("Load A Config"), path, _(""), _("SigmaTizm Patches (*.sigm) |*.sigm||"), wxFD_OPEN );
+#else
+	wxFileDialog fdialog( this, _("Load A Config"), _("."), _(""), _("SigmaTizm Patches (*.sigm) |*.sigm||"), wxFD_OPEN );
+#endif
 
 	wxString filename;
 
@@ -1628,7 +1632,11 @@ void wxKeyboard::OnSaveConfig( wxCommandEvent& event )
 {
 #ifndef DEMOVERSION
 	wxString path = wxStandardPaths::Get().GetUserConfigDir() + _("\\..\\Local\\Sigmatizm");
+#ifndef __APPLE__
 	wxFileDialog fdialog( this, _("Save Config As"), path, _(""), _("Sigmatizm Configurations (*.sigm) |*.sigm||"), wxFD_SAVE );
+#else
+	wxFileDialog fdialog( this, _("Save Config As"), _("."), _(""), _("Sigmatizm Configurations (*.sigm) |*.sigm||"), wxFD_SAVE );
+#endif
 
 	wxString filename;
 	
