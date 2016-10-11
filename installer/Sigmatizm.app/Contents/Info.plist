@@ -9,11 +9,23 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.zetacentauri.SigmaTizm</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.0</string>
+	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>ttxt</string>
 	<key>CFBundleExecutable</key>
         <string>Sigmatizm</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1</string>
+        <key>LSApplicationCategoryType</key>
+        <string>public.app-category.music</string>
+	<key>CFBundleName</key>
+	<string>Sigmatizm</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2016 Jason Champion. All rights reserved.</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
