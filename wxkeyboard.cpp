@@ -1738,7 +1738,7 @@ void wxKeyboard::OnInfo( wxCommandEvent& event )
 {
 	// Show about box.
     wxAboutDialogInfo info;
-    info.SetVersion(_("1.1"));
+    info.SetVersion(_("1.11"));
     info.SetCopyright(_("Copyright 2008-2016 Jason Champion"));
 	info.AddDeveloper(_("Jason Champion"));
 	info.SetIcon(_icon);
