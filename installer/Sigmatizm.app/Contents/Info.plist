@@ -7,7 +7,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.zetacentauri.SigmaTizm</string>
+	<string>com.zetacentauri.Sigmatizm</string>
 	<key>CFBundleVersion</key>
 	<string>1.1</string>
 	<key>CFBundleSignature</key>

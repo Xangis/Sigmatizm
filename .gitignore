@@ -49,3 +49,4 @@ ipch
 *.res
 *.def
 
+.DS_Store
