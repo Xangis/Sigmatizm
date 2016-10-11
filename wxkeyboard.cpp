@@ -619,7 +619,7 @@ void wxKeyboard::CreateControls()
 
 	_volumeMeterR = new wxVolumeMeter( itemDialog1, ID_VOLUME_RIGHT, 100, wxDefaultPosition, wxSize(100, 13));
 	_volumeMeterR->Connect(ID_VOLUME_RIGHT, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
-	itemBoxSizer3b->Add(_volumeMeterR, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
+	itemBoxSizer3b->Add(_volumeMeterR, 0, wxALL, 1);
 	horizTop3->Add(itemBoxSizer3b, 0, wxALL, 1);
 #endif
 
