@@ -53,7 +53,6 @@ XAudio2 portions of either the DirectX SDK or the Windows SDK).
 
 In addition to those libraries, it also requires the following libraries:
 
-- AudioFile via https://github.com/Xangis/AudioFile
 - StreamingAudioLib via https://github.com/Xangis/StreamingAudioLib
 - wxAudioControls via https://github.com/Xangis/wxAudioControls
 

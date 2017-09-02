@@ -115,8 +115,8 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\lib\pa_stable_v19_20140130\portaudio\include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;F:\lib\rtmidi-2.1.0;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\lib\rtmidi-2.1.0\lib;F:\lib\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;F:\lib\libsndfile-1.0.25\lib;F:\lib\wxWidgets-3.0.2\lib\vc_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\rtmidi-2.1.0;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\wxAudioControls\Debug\;F:\lib\rtmidi-2.1.0\lib;F:\lib\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;F:\lib\libsndfile-1.0.25\lib;F:\lib\wxWidgets-3.0.2\lib\vc_lib;$(LibraryPath)</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Xangis\code\wxAudioControls\Release;F:\lib\rtmidi-2.1.0\lib;F:\lib\wxWidgets-3.0.2\lib\vc_lib;F:\lib\libsndfile-1.0.25\lib;F:\lib\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;$(LibraryPath)</LibraryPath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:\lib\wxWidgets-3.0.2\include\;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\rtmidi-2.1.0;$(IncludePath)</IncludePath>
   </PropertyGroup>
