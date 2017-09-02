@@ -48,7 +48,8 @@ It is licensed under the terms of the MIT license.
 ## Building
 
 Building this application requires wxWidgets. It is meant to be used with v3.0. It also
-uses PortAudio and RtMidi.
+uses PortAudio and RtMidi and requires headers from the DirectX SDK (or at least the
+XAudio2 portions of either the DirectX SDK or the Windows SDK).
 
 In addition to those libraries, it also requires the following libraries:
 
@@ -57,6 +58,12 @@ In addition to those libraries, it also requires the following libraries:
 - wxAudioControls via https://github.com/Xangis/wxAudioControls
 
 Each of these should be checked out into directories adjacent to Sigmatizm (same parent).
+
+### Windows
+
+A Visual Studio solution is included. You'll need to update the include and library paths 
+to match where you've put your wxWidgets, PortAudio, DirectX, and RtMidi libraries in 
+order to build.
 
 ### OSX
 
@@ -79,6 +86,10 @@ for running as a VST, so development may resume in the future.
 
 If you have any improvements to add, or if you can help in implementing use
 of this application as a VST, I'd be happy to accept pull requests.
+
+In addition, this program was developed by one person and may have some 
+things that are specified to my environment (library paths, for example) 
+that could be changed to be make it easier to build from source the first time.
 
 In addition, if you'd like to contribute to the patch library, you are more 
 than welcome to do so.

@@ -213,10 +213,10 @@ bool wxKeyboard::Create( wxWindow* parent, wxWindowID id, const wxString& captio
 	_lfoParameters.enabled = true;
 	_lfoParameters.depth = 0.0f;
 	_chWaveform = NULL;
-	// Set up delay effect.
-	_delayEffect = new DelayEffect(true);
-	_delayEffect->SetDelayTime(200, 44100);
-	_delayEffect->SetWetMix(0.5);
+	// Set up delay effect (requires the AudioEffect library, which is not included).
+	//_delayEffect = new DelayEffect(true);
+	//_delayEffect->SetDelayTime(200, 44100);
+	//_delayEffect->SetWetMix(0.5);
 #ifndef linux
 	_volumeMeterL = NULL;
 	_volumeMeterR = NULL;
