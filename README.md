@@ -65,6 +65,14 @@ A Visual Studio solution is included. You'll need to update the include and libr
 to match where you've put your wxWidgets, PortAudio, DirectX, and RtMidi libraries in 
 order to build.
 
+### Linux
+
+To build on Linux, run "make -f Makefile.linux". You may need to update the Makefile.linux
+file to reflect library locations if they're not where it expects them.
+
+You'll need to have libwxgtk3.0-dev librtmidi-dev portaudio19-dev and NOT libportaudio-dev
+in order to build.
+
 ### OSX
 
 This application was partially but not fully ported to OSX. It will probably not build 
