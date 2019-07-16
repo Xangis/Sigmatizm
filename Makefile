@@ -7,7 +7,7 @@ PROGRAM = installer/Sigmatizm.app/Contents/MacOS/Sigmatizm
 
 # Directory containing library portions of code.
 INCLUDEDIR2 = /usr/local/include
-INCLUDEDIR3 = ../../lib/rtmidi-2.1.0/
+INCLUDEDIR3 = ../../lib/rtmidi-4.0.0/
 LIBDIR = /usr/local/lib
 
 # Object files

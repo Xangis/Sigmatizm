@@ -119,3 +119,7 @@ that could be changed to be make it easier to build from source the first time.
 
 In addition, if you'd like to contribute to the patch library, you are more 
 than welcome to do so.
+
+### TODO
+
+Port from Portaudio to SDL_Mixer (just like DrumPads).
