@@ -33,7 +33,7 @@
 #ifndef VST
 #include "../wxAudioControls/AudioSettingsInterface.h"
 #include "../wxAudioControls/MidiSettingsInterface.h"
-#include "portaudio.h"
+#include "RtAudio.h"
 #else
 #include "aeffectx.h"
 #include "audioeffectx.h"
@@ -163,11 +163,11 @@ public:
 #ifndef VST
     wxKeyboard();
     wxKeyboard(wxWindow* parent, wxWindowID id = SYMBOL_WXKEYBOARD_IDNAME, const wxString& caption = SYMBOL_WXKEYBOARD_TITLE, const wxPoint& pos = SYMBOL_WXKEYBOARD_POSITION, const wxSize& size = SYMBOL_WXKEYBOARD_SIZE, long style = SYMBOL_WXKEYBOARD_STYLE );
-	int RenderAudio( const void *input, void *output, unsigned long frameCount, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags );
+	int RenderAudio( void *output, void *input, unsigned int frameCount, double streamTime, RtAudioStreamStatus statusFlags, void* userData );
     void OnSettings( wxCommandEvent& event );
     // AudioSettingsInterface methods.
-    virtual void SelectAudioInputDevice(PaStreamParameters* device);
-	virtual void SelectAudioOutputDevice(PaStreamParameters* device);
+    virtual void SelectAudioInputDevice(RtAudio::StreamParameters* device);
+	virtual void SelectAudioOutputDevice(RtAudio::StreamParameters* device);
     // End AudioSettingsInterface methods.
 #else
     wxKeyboard();
@@ -296,7 +296,9 @@ private:
 	LFOParameters _lfoParameters;
 #ifndef VST
     wxKeylessBitmapButton* _settingsButton;
-	PaStream *_buffer;
+    RtAudio _audio;
+	double *_buffer;
+    unsigned int _bufferLength;
 #endif
 	SynthParametersDlg* _timbrePanel;
 };

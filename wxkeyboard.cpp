@@ -67,18 +67,19 @@ END_EVENT_TABLE()
 /**
 * Callback for PortAudio rendering.
 */
-int AudioCallback( const void *input, void *output, unsigned long frameCount, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void *userData )
+int AudioCallback( void *output, void *input, unsigned int frameCount, double streamTime, RtAudioStreamStatus statusFlags, void* userData )
 {
 	wxKeyboard* keyboard = (wxKeyboard *)userData;
 	if( keyboard != NULL && !keyboard->_done )
 	{
-		return keyboard->RenderAudio(input, output, frameCount, timeInfo, statusFlags );
+		return keyboard->RenderAudio(input, output, frameCount, streamTime, statusFlags, keyboard );
 	}
 	return 0;
 }
 
 wxKeyboard::wxKeyboard( wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style )
 {
+    _bufferLength = BUFFERLENGTH;
     Create(parent, id, caption, pos, size, style);
 }
 
@@ -122,16 +123,15 @@ wxKeyboard::~wxKeyboard()
 	{
 		delete _midiOutDevice;
 	}
-	PaError err = Pa_AbortStream( _buffer );
-	// Don't show error messages in the destructor -- we couldn't care less.
-    //if( err != paNoError )
-	//	wxMessageBox(  wxString::Format(_("PortAudio error: %s\n"), Pa_GetErrorText( err ) ));
-	err = Pa_CloseStream( _buffer );
-	//if( err != paNoError )
-	//   wxMessageBox(  wxString::Format(_("PortAudio error: %s\n"), Pa_GetErrorText( err )) );
-	err = Pa_Terminate();
-	//if( err != paNoError )
-	//   wxMessageBox(  wxString::Format(_("PortAudio error: %s\n"), Pa_GetErrorText( err )) );
+
+    try {
+        // Stop the stream
+        _audio.stopStream();
+        _audio.closeStream( );
+    }
+    catch (RtAudioError& e) {
+        e.printMessage();
+    }
 #endif
 }
 
@@ -305,16 +305,18 @@ bool wxKeyboard::Create( wxWindow* parent, wxWindowID id, const wxString& captio
         wxMessageBox(wxString::Format(_("%s\n\n%s"), in, out ));
     }
 
-    PaError err = Pa_Initialize();
-    if( err != paNoError )
-    {
-        wxMessageBox( _("PortAudio error: %s\n"), wxString::FromAscii(Pa_GetErrorText( err )) );
+    RtAudio _audio;
+    RtAudio::StreamParameters parameters;
+    parameters.deviceId = _audio.getDefaultOutputDevice();
+    parameters.nChannels = 2;
+    parameters.firstChannel = 0;
+    try {
+        _audio.openStream( &parameters, NULL, RTAUDIO_FLOAT32, 44100, &_bufferLength, AudioCallback, this );
+        _audio.startStream();
     }
-    Pa_OpenDefaultStream( &_buffer, 0, 2, paFloat32, _sampleRate, BUFFERLENGTH, AudioCallback, this );
-    err = Pa_StartStream( _buffer );
-    if( err != paNoError )
-    {
-        wxMessageBox( _("PortAudio error: %s\n"), wxString::FromAscii(Pa_GetErrorText( err )) );
+    catch( RtAudioError& e ) {
+        e.printMessage();
+        exit(1);
     }
 #endif
 
@@ -1778,14 +1780,13 @@ void wxKeyboard::processReplacing (float** inputs, float** outputs, VstInt32 sam
 * Generates one buffer worth of audio and queues it up.  This is called by the PortAudio callback.
 */
 #ifndef VST
-int wxKeyboard::RenderAudio( const void *input, void *output, unsigned long frameCount, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags )
+int wxKeyboard::RenderAudio( void *output, void *input, unsigned int frameCount, double streamTime, RtAudioStreamStatus statusFlags, void* userData )
 #else
-int wxKeyboard::RenderAudio( const void *input, void *output, unsigned long frameCount )
+int wxKeyboard::RenderAudio( void *input, void *output, unsigned long frameCount )
 #endif
 {
 	float* buffer = (float*)output;
 	float tmpval;
-	memset(output, 0, (sizeof(float) * frameCount * 2));
 	
 	for( int i = 0; i < 128; i++ )
 	{
@@ -2300,7 +2301,7 @@ void wxKeyboard::OnSettings( wxCommandEvent& event )
     event.Skip();
 }
 
-void wxKeyboard::SelectAudioInputDevice(PaStreamParameters* device)
+void wxKeyboard::SelectAudioInputDevice(RtAudio::StreamParameters* device)
 {
     // Ignored.  No input.
 }
@@ -2308,23 +2309,26 @@ void wxKeyboard::SelectAudioInputDevice(PaStreamParameters* device)
 /**
 * Handles changing the audio output device.  Not available in VST mode.
 */
-void wxKeyboard::SelectAudioOutputDevice(PaStreamParameters* device)
+void wxKeyboard::SelectAudioOutputDevice(RtAudio::StreamParameters* device)
 {
     int value;
     _done = true;
-    //Pa_StopStream(_buffer);
-    wxThread::Sleep(20);
-    value = Pa_AbortStream(_buffer);
-    value = Pa_CloseStream(_buffer);
+    _audio.stopStream();
+    _audio.closeStream();
     _buffer = NULL;
-    //Pa_Initialize();
-    value = Pa_OpenStream(&_buffer, NULL, device, _sampleRate, BUFFERLENGTH, paNoFlag, AudioCallback, this );
-    if( value != 0 )
-    {
-        wxMessageBox(wxString::FromAscii(Pa_GetErrorText(value)));
-        return;
+    // TODO: Use correct device, use parameters from function arguments.
+    RtAudio::StreamParameters parameters;
+    parameters.deviceId = _audio.getDefaultOutputDevice();
+    parameters.nChannels = 2;
+    parameters.firstChannel = 0;
+    try {
+        _audio.openStream( &parameters, NULL, RTAUDIO_FLOAT32, 44100, &_bufferLength, AudioCallback, this );
+        _audio.startStream();
     }
-    value = Pa_StartStream( _buffer );
+    catch( RtAudioError& e ) {
+        e.printMessage();
+        exit(1);
+    }
     _done = false;
 }
 #else

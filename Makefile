@@ -6,6 +6,7 @@ WX_CONFIG := wx-config
 PROGRAM = installer/Sigmatizm.app/Contents/MacOS/Sigmatizm
 
 # Directory containing library portions of code.
+INCLUDEDIR = ../../lib/rtaudio-5.1.0/
 INCLUDEDIR2 = /usr/local/include
 INCLUDEDIR3 = ../../lib/rtmidi-4.0.0/
 LIBDIR = /usr/local/lib
@@ -20,12 +21,12 @@ CXX = $(shell $(WX_CONFIG) --cxx)
 
 .cpp.o :
 #	$(CXX) -g -ggdb -c -D__MACOSX_CORE__ -I$(INCLUDEDIR2) -I$(INCLUDEDIR3) `$(WX_CONFIG) --cxxflags` -o $@ $<
-	$(CXX) -c -O3 -D__MACOSX_CORE__ -I$(INCLUDEDIR2) -I$(INCLUDEDIR3) `$(WX_CONFIG) --cxxflags` -o $@ $<
+	$(CXX) -c -O3 -D__MACOSX_CORE__ -I$(INCLUDEDIR) -I$(INCLUDEDIR2) -I$(INCLUDEDIR3) `$(WX_CONFIG) --cxxflags` -o $@ $<
 
 all:    $(PROGRAM)
 
 $(PROGRAM):	$(OBJECTS)
-	$(CXX) -D__MACOSX_CORE__ -o $(PROGRAM) $(OBJECTS) -L$(LIBDIR) `$(WX_CONFIG) --libs` -framework CoreMidi -framework CoreAudio -framework CoreFoundation -lportaudio
+	$(CXX) -D__MACOSX_CORE__ -o $(PROGRAM) $(OBJECTS) -L$(LIBDIR) `$(WX_CONFIG) --libs` -framework CoreMidi -framework CoreAudio -framework CoreFoundation
 
 clean: 
 	rm -f *.o ../wxAudioControls/*.o ../AudioEffect/*.o $(PROGRAM)
