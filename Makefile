@@ -10,6 +10,7 @@ INCLUDEDIR = ../../lib/rtaudio-5.1.0/
 INCLUDEDIR2 = /usr/local/include
 INCLUDEDIR3 = ../../lib/rtmidi-4.0.0/
 LIBDIR = /usr/local/lib
+LIBDIR2 = ../../lib/rtaudio-5.1.0/.libs/
 
 # Object files
 OBJECTS = wxMiniWavePanel.o SettingsDlg.o SynthParametersDlg.o wxHarmonicsPanel.o wxkeyboard.o wxkeyboardapp.o $(INCLUDEDIR3)/RtMidi.o ../wxAudioControls/wxSettingsFile.o ../wxAudioControls/wxBitmapSlider.o ../wxAudioControls/wxMidiSettingsDlg.o ../wxAudioControls/wxVolumeMeter.o ../wxAudioControls/wxSwitch.o ../wxAudioControls/wxKeylessChoice.o ../wxAudioControls/wxOctaveCtrl.o ../wxAudioControls/wxBitmapSpinButton.o ../wxAudioControls/wxKeylessButton.o ../wxAudioControls/wxKeylessBitmapButton.o ../StreamingAudioLib/AudioUtil.o ../StreamingAudioLib/Wavetable.o ../wxAudioControls/wxAudioSettings.o ../AudioEffect/DelayEffect.o
@@ -26,7 +27,7 @@ CXX = $(shell $(WX_CONFIG) --cxx)
 all:    $(PROGRAM)
 
 $(PROGRAM):	$(OBJECTS)
-	$(CXX) -D__MACOSX_CORE__ -o $(PROGRAM) $(OBJECTS) -L$(LIBDIR) `$(WX_CONFIG) --libs` -framework CoreMidi -framework CoreAudio -framework CoreFoundation
+	$(CXX) -D__MACOSX_CORE__ -o $(PROGRAM) $(OBJECTS) -L$(LIBDIR) -L$(LIBDIR2) `$(WX_CONFIG) --libs` -lrtaudio -framework CoreMidi -framework CoreAudio -framework CoreFoundation
 
 clean: 
 	rm -f *.o ../wxAudioControls/*.o ../AudioEffect/*.o $(PROGRAM)
