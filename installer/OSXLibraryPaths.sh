@@ -8,6 +8,7 @@ install_name_tool -change /usr/local/lib/libwx_osx_cocoau_core-3.1.dylib @execut
 install_name_tool -change /usr/local/lib/libwx_baseu_xml-3.1.dylib @executable_path/../Frameworks/libwx_baseu_xml-3.1.dylib Sigmatizm.app/Contents/MacOS/Sigmatizm
 install_name_tool -change /usr/local/lib/libwx_baseu_net-3.1.dylib @executable_path/../Frameworks/libwx_baseu_net-3.1.dylib Sigmatizm.app/Contents/MacOS/Sigmatizm
 install_name_tool -change /usr/local/lib/libwx_baseu-3.1.dylib @executable_path/../Frameworks/libwx_baseu-3.1.dylib Sigmatizm.app/Contents/MacOS/Sigmatizm
+install_name_tool -change /usr/local/lib/librtaudio.6.dylib @executable_path/../Frameworks/librtaudio.6.dylib Sigmatizm.app/Contents/MacOS/Sigmatizm
 # wxWidget library references to other wxWidgets libraries.
 install_name_tool -change /usr/local/opt/jpeg/lib/libjpeg.9.dylib @executable_path/../Frameworks/libjpeg.9.dylib Sigmatizm.app/Contents/Frameworks/libtiff.5.dylib
 install_name_tool -change /usr/local/opt/jpeg/lib/libjpeg.9.dylib @executable_path/../Frameworks/libjpeg.9.dylib Sigmatizm.app/Contents/Frameworks/libwx_osx_cocoau_core-3.1.dylib

@@ -12,5 +12,6 @@ cp /usr/local/lib/libwx_osx_cocoau_xrc-3.1.dylib Sigmatizm.app/Contents/Framewor
 cp /usr/local/lib/libwx_baseu-3.1.dylib Sigmatizm.app/Contents/Frameworks/
 cp ../../../lib/SDL2_ttf-2.0.15/.libs/libSDL2_ttf-2.0.0.dylib Sigmatizm.app/Contents/Frameworks/
 cp ../../../lib/rtmidi-4.0.0/.libs/librtmidi.5.dylib Sigmatizm.app/Contents/Frameworks/
+cp /usr/local/lib/librtaudio.6.dylib Sigmatizm.app/Contents/Frameworks/
 # These aren't libs, but should be copied now.
 cp -R ../Release/Patches Sigmatizm.app/Contents/Resources/
