@@ -1,5 +1,5 @@
-#ifndef _WXKEYBOARD_H_
-#define _WXKEYBOARD_H_
+#ifndef _SIGMATIZM_H_
+#define _SIGMATIZM_H_
 
 #define MAX_OCTAVES 7
 #define MAX_NOTES 128
@@ -113,18 +113,18 @@ class wxSpinCtrl;
 #endif
 
 /*!
- * wxKeyboard class declaration
+ * Sigmatizm class declaration
  */
 #ifndef VST
-class wxKeyboard: public wxDialog, public OctaveCallback, public MidiSettingsInterface, public HarmonicsCallback, public AudioSettingsInterface
+class Sigmatizm: public wxFrame, public OctaveCallback, public MidiSettingsInterface, public HarmonicsCallback, public AudioSettingsInterface
 #else
-class wxKeyboard: public wxDialog, public OctaveCallback, public HarmonicsCallback, public AudioEffectX
+class Sigmatizm: public wxDialog, public OctaveCallback, public HarmonicsCallback, public AudioEffectX
 #endif
 {
-    DECLARE_DYNAMIC_CLASS( wxKeyboard )
+    DECLARE_DYNAMIC_CLASS( Sigmatizm )
     DECLARE_EVENT_TABLE()
 public:
-	virtual ~wxKeyboard();
+	virtual ~Sigmatizm();
     /// Creation
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_WXKEYBOARD_IDNAME, const wxString& caption = SYMBOL_WXKEYBOARD_TITLE, const wxPoint& pos = SYMBOL_WXKEYBOARD_POSITION, const wxSize& size = SYMBOL_WXKEYBOARD_SIZE, long style = SYMBOL_WXKEYBOARD_STYLE );
     void CreateControls();
@@ -161,8 +161,8 @@ public:
 	void OnZoom( wxScrollEvent& event );
 	void OnFrequency( wxScrollEvent& event );
 #ifndef VST
-    wxKeyboard();
-    wxKeyboard(wxWindow* parent, wxWindowID id = SYMBOL_WXKEYBOARD_IDNAME, const wxString& caption = SYMBOL_WXKEYBOARD_TITLE, const wxPoint& pos = SYMBOL_WXKEYBOARD_POSITION, const wxSize& size = SYMBOL_WXKEYBOARD_SIZE, long style = SYMBOL_WXKEYBOARD_STYLE );
+    Sigmatizm();
+    Sigmatizm(wxWindow* parent, wxWindowID id = SYMBOL_WXKEYBOARD_IDNAME, const wxString& caption = SYMBOL_WXKEYBOARD_TITLE, const wxPoint& pos = SYMBOL_WXKEYBOARD_POSITION, const wxSize& size = SYMBOL_WXKEYBOARD_SIZE, long style = SYMBOL_WXKEYBOARD_STYLE );
 	int RenderAudio( void *output, void *input, unsigned int frameCount, double streamTime, RtAudioStreamStatus statusFlags, void* userData );
     void OnSettings( wxCommandEvent& event );
     // AudioSettingsInterface methods.
@@ -170,9 +170,9 @@ public:
 	virtual void SelectAudioOutputDevice(RtAudio::StreamParameters* device);
     // End AudioSettingsInterface methods.
 #else
-    wxKeyboard();
-    wxKeyboard( audioMasterCallback audioMaster );
-    wxKeyboard( audioMasterCallback audioMaster, wxWindow* parent, wxWindowID id = SYMBOL_WXKEYBOARD_IDNAME, const wxString& caption = SYMBOL_WXKEYBOARD_TITLE, const wxPoint& pos = SYMBOL_WXKEYBOARD_POSITION, const wxSize& size = SYMBOL_WXKEYBOARD_SIZE, long style = SYMBOL_WXKEYBOARD_STYLE );
+    Sigmatizm();
+    Sigmatizm( audioMasterCallback audioMaster );
+    Sigmatizm( audioMasterCallback audioMaster, wxWindow* parent, wxWindowID id = SYMBOL_WXKEYBOARD_IDNAME, const wxString& caption = SYMBOL_WXKEYBOARD_TITLE, const wxPoint& pos = SYMBOL_WXKEYBOARD_POSITION, const wxSize& size = SYMBOL_WXKEYBOARD_SIZE, long style = SYMBOL_WXKEYBOARD_STYLE );
 	int RenderAudio( const void *input, void *output, unsigned long frameCount );
     // VST Methods
     virtual void processReplacing (float** inputs, float** outputs, VstInt32 sampleFrames);

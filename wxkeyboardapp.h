@@ -27,7 +27,7 @@ extern "C" DLLFUNCTIONS_API AEffect* VSTPluginMain (audioMasterCallback audioMas
  */
 
 #include "wx/image.h"
-#include "wxkeyboard.h"
+#include "Sigmatizm.h"
 
 /*!
  * Forward declarations
@@ -66,7 +66,7 @@ public:
     wxKeyboardApp(AudioEffect* pEffect);
 #endif
 private:
-    wxKeyboard* _mainWindow;
+    Sigmatizm* _mainWindow;
     wxWindow* _parent;
 };
 

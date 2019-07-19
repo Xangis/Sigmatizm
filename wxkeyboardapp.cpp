@@ -65,10 +65,10 @@ bool wxKeyboardApp::OnInit()
 #endif
 
 #ifndef VST
-    _mainWindow = new wxKeyboard(NULL, ID_KEYBOARD_DLG );
+    _mainWindow = new Sigmatizm(NULL, ID_KEYBOARD_DLG );
     _mainWindow->Show(true);
 #else
-    _mainWindow = new wxKeyboard(NULL, NULL, ID_KEYBOARD_DLG );
+    _mainWindow = new Sigmatizm(NULL, NULL, ID_KEYBOARD_DLG );
 #endif
 
     return true;
@@ -85,7 +85,7 @@ int wxKeyboardApp::OnExit()
 #ifdef VST
 wxKeyboardApp::wxKeyboardApp (AudioEffect *pEffect) : AEffEditor (pEffect)
 {
-    _mainWindow = new wxKeyboard(NULL, NULL, ID_KEYBOARD_DLG );
+    _mainWindow = new Sigmatizm(NULL, NULL, ID_KEYBOARD_DLG );
     //rect.left   = 0;
     //rect.top    = 0;
     pEffect->setEditor (this);

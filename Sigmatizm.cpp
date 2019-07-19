@@ -7,7 +7,7 @@
 
 #include "wx/wx.h"
 
-#include "wxkeyboard.h"
+#include "Sigmatizm.h"
 #include "wxkeyboardapp.h"
 
 // Load XPM Images
@@ -24,43 +24,45 @@
 #include "openfolder.xpm"
 #include "spin.xpm"
 
-IMPLEMENT_DYNAMIC_CLASS( wxKeyboard, wxDialog )
+IMPLEMENT_DYNAMIC_CLASS( Sigmatizm, wxFrame )
 
-BEGIN_EVENT_TABLE( wxKeyboard, wxDialog )
-    EVT_CLOSE( wxKeyboard::OnCloseWindow )
-    EVT_KEY_DOWN( wxKeyboard::OnKeyDown )
-    EVT_KEY_UP( wxKeyboard::OnKeyUp )
-	EVT_BUTTON( ID_PANICBUTTON, wxKeyboard::OnPanic )
-	EVT_BUTTON( ID_INFOBUTTON, wxKeyboard::OnInfo )
-	EVT_BUTTON( ID_HELPBUTTON, wxKeyboard::OnHelp )
-	EVT_BUTTON( ID_MIDIBUTTON, wxKeyboard::OnMidiSettings )
-	EVT_BUTTON( ID_SAVEBUTTON, wxKeyboard::OnSaveConfig )
-	EVT_BUTTON( ID_LOADBUTTON, wxKeyboard::OnLoadConfig )
-	EVT_BUTTON( ID_FILTERBUTTON, wxKeyboard::OnFilter )
-	EVT_BUTTON( ID_BUTTON_CLEAR, wxKeyboard::OnClear )
-	EVT_BUTTON( ID_BUTTON_GENERATE, wxKeyboard::OnGenerate )
+BEGIN_EVENT_TABLE( Sigmatizm, wxFrame )
+    EVT_CLOSE( Sigmatizm::OnCloseWindow )
+    EVT_KEY_DOWN( Sigmatizm::OnKeyDown )
+    EVT_KEY_UP( Sigmatizm::OnKeyUp )
+	EVT_BUTTON( ID_PANICBUTTON, Sigmatizm::OnPanic )
+	EVT_BUTTON( ID_INFOBUTTON, Sigmatizm::OnInfo )
+	EVT_BUTTON( ID_HELPBUTTON, Sigmatizm::OnHelp )
+	EVT_BUTTON( ID_MIDIBUTTON, Sigmatizm::OnMidiSettings )
+	EVT_BUTTON( ID_SAVEBUTTON, Sigmatizm::OnSaveConfig )
+	EVT_BUTTON( ID_LOADBUTTON, Sigmatizm::OnLoadConfig )
+	EVT_BUTTON( ID_FILTERBUTTON, Sigmatizm::OnFilter )
+	EVT_BUTTON( ID_BUTTON_CLEAR, Sigmatizm::OnClear )
+	EVT_BUTTON( ID_BUTTON_GENERATE, Sigmatizm::OnGenerate )
 #ifndef VST
-    EVT_BUTTON( ID_BUTTON_SETTINGS, wxKeyboard::OnSettings )
+    EVT_BUTTON( ID_BUTTON_SETTINGS, Sigmatizm::OnSettings )
 #endif
-	EVT_SPIN_UP( ID_BANKSPIN, wxKeyboard::OnBankSpinUp )
-    EVT_SPIN_DOWN( ID_BANKSPIN, wxKeyboard::OnBankSpinDown )
-    EVT_SPIN_UP( ID_PATCHSPIN, wxKeyboard::OnPatchSpinUp )
-    EVT_SPIN_DOWN( ID_PATCHSPIN, wxKeyboard::OnPatchSpinDown )
-	EVT_COMMAND_SCROLL( ID_MODWHEEL, wxKeyboard::OnModWheel )
-	EVT_COMMAND_SCROLL( ID_PITCHWHEEL, wxKeyboard::OnPitchWheel )
-	EVT_COMMAND_SCROLL( ID_ZOOM_LEVEL, wxKeyboard::OnZoom )
-	EVT_COMMAND_SCROLL( ID_LFO_FREQUENCY, wxKeyboard::OnFrequency )
-	EVT_BUTTON( ID_BUTTON_NORMALIZE, wxKeyboard::OnNormalize )
-	EVT_BUTTON( ID_BUTTON_INITIAL, wxKeyboard::OnInitial )
-	EVT_BUTTON( ID_BUTTON_FINAL, wxKeyboard::OnFinal )
-	EVT_BUTTON( ID_BUTTON_LEFT, wxKeyboard::OnButtonLeft )
-	EVT_BUTTON( ID_BUTTON_RIGHT, wxKeyboard::OnButtonRight )
-	EVT_CHOICE( ID_LFO_WAVEFORM, wxKeyboard::OnLfoWaveform )
-    EVT_LEFT_UP(wxKeyboard::OnMouseRelease) // Catches note off outside of an octave control.
-	EVT_COMMAND_SCROLL( ID_ADSR_ATTACK, wxKeyboard::OnAttack )
-	EVT_COMMAND_SCROLL( ID_ADSR_DECAY, wxKeyboard::OnDecay )
-	EVT_COMMAND_SCROLL( ID_ADSR_SUSTAIN, wxKeyboard::OnSustain )
-	EVT_COMMAND_SCROLL( ID_ADSR_RELEASE, wxKeyboard::OnRelease )
+	EVT_SPIN_UP( ID_BANKSPIN, Sigmatizm::OnBankSpinUp )
+    EVT_SPIN_DOWN( ID_BANKSPIN, Sigmatizm::OnBankSpinDown )
+    EVT_SPIN_UP( ID_PATCHSPIN, Sigmatizm::OnPatchSpinUp )
+    EVT_SPIN_DOWN( ID_PATCHSPIN, Sigmatizm::OnPatchSpinDown )
+	EVT_COMMAND_SCROLL( ID_MODWHEEL, Sigmatizm::OnModWheel )
+	EVT_COMMAND_SCROLL( ID_PITCHWHEEL, Sigmatizm::OnPitchWheel )
+	EVT_COMMAND_SCROLL( ID_ZOOM_LEVEL, Sigmatizm::OnZoom )
+	EVT_COMMAND_SCROLL( ID_LFO_FREQUENCY, Sigmatizm::OnFrequency )
+	EVT_BUTTON( ID_BUTTON_NORMALIZE, Sigmatizm::OnNormalize )
+	EVT_BUTTON( ID_BUTTON_INITIAL, Sigmatizm::OnInitial )
+	EVT_BUTTON( ID_BUTTON_FINAL, Sigmatizm::OnFinal )
+	EVT_BUTTON( ID_BUTTON_LEFT, Sigmatizm::OnButtonLeft )
+	EVT_BUTTON( ID_BUTTON_RIGHT, Sigmatizm::OnButtonRight )
+	EVT_CHOICE( ID_LFO_WAVEFORM, Sigmatizm::OnLfoWaveform )
+    EVT_LEFT_UP(Sigmatizm::OnMouseRelease) // Catches note off outside of an octave control.
+	EVT_COMMAND_SCROLL( ID_ADSR_ATTACK, Sigmatizm::OnAttack )
+	EVT_COMMAND_SCROLL( ID_ADSR_DECAY, Sigmatizm::OnDecay )
+	EVT_COMMAND_SCROLL( ID_ADSR_SUSTAIN, Sigmatizm::OnSustain )
+	EVT_COMMAND_SCROLL( ID_ADSR_RELEASE, Sigmatizm::OnRelease )
+    EVT_MENU( wxID_ABOUT, Sigmatizm::OnInfo )
+    EVT_MENU( wxID_HELP, Sigmatizm::OnHelp )
 END_EVENT_TABLE()
 
 #ifndef VST
@@ -69,7 +71,7 @@ END_EVENT_TABLE()
 */
 int AudioCallback( void *output, void *input, unsigned int frameCount, double streamTime, RtAudioStreamStatus statusFlags, void* userData )
 {
-	wxKeyboard* keyboard = (wxKeyboard *)userData;
+    Sigmatizm* keyboard = (Sigmatizm *)userData;
 	if( keyboard != NULL && !keyboard->_done )
 	{
 		return keyboard->RenderAudio(input, output, frameCount, streamTime, statusFlags, keyboard );
@@ -77,7 +79,7 @@ int AudioCallback( void *output, void *input, unsigned int frameCount, double st
 	return 0;
 }
 
-wxKeyboard::wxKeyboard( wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style )
+Sigmatizm::Sigmatizm( wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style )
 {
     _bufferLength = BUFFERLENGTH;
     Create(parent, id, caption, pos, size, style);
@@ -86,11 +88,11 @@ wxKeyboard::wxKeyboard( wxWindow* parent, wxWindowID id, const wxString& caption
 /**
 * Empty constructor.  Must not be used in VST mode.
 */
-wxKeyboard::wxKeyboard()
+Sigmatizm::Sigmatizm()
 {
 }
 #else
-wxKeyboard::wxKeyboard() : AudioEffectX((audioMasterCallback)NULL, 0, 0)
+Sigmatizm::Sigmatizm() : AudioEffectX((audioMasterCallback)NULL, 0, 0)
 {
 }
 
@@ -99,17 +101,17 @@ AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
 	return new wxKeyboard(audioMaster, NULL, ID_KEYBOARD_DLG);
 }
 
-wxKeyboard::wxKeyboard( audioMasterCallback audioMaster) : AudioEffectX(audioMaster, 0, 0)
+Sigmatizm::Sigmatizm( audioMasterCallback audioMaster) : AudioEffectX(audioMaster, 0, 0)
 {
 }
 
-wxKeyboard::wxKeyboard( audioMasterCallback audioMaster, wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style ) : AudioEffectX(audioMaster, 0, 0)
+Sigmatizm::Sigmatizm( audioMasterCallback audioMaster, wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style ) : AudioEffectX(audioMaster, 0, 0)
 {
     Create(parent, id, caption, pos, size, style);
 }
 #endif
 
-wxKeyboard::~wxKeyboard()
+Sigmatizm::~Sigmatizm()
 {
 	_done = true;
 	wxThread::Sleep(20);
@@ -138,7 +140,7 @@ wxKeyboard::~wxKeyboard()
 /**
 * Handles dialog creation, initializes audio.
 */
-bool wxKeyboard::Create( wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style )
+bool Sigmatizm::Create( wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style )
 {
 #ifdef VST
     // VST Init
@@ -250,7 +252,7 @@ bool wxKeyboard::Create( wxWindow* parent, wxWindowID id, const wxString& captio
 	_midiOutputDeviceNumber = 0;  // Default Output
 	EnableMidiOutput(false);
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    wxFrame::Create( parent, id, caption, pos, size, style );
 
     CreateControls();
     Centre();
@@ -324,7 +326,7 @@ bool wxKeyboard::Create( wxWindow* parent, wxWindowID id, const wxString& captio
 }
 
 
-void wxKeyboard::CreateControls()
+void Sigmatizm::CreateControls()
 {
     wxImage spinImage(spin_xpm);
     wxImage sliderBk;
@@ -337,6 +339,13 @@ void wxKeyboard::CreateControls()
     hsliderBk.LoadFile( _("hsliderbk.bmp"), wxBITMAP_TYPE_BMP );
     hsliderInd.LoadFile( _("hsliderind.bmp"), wxBITMAP_TYPE_BMP );
 #else
+   // Create menu bar (for Mac)
+    wxMenu* helpMenu = new wxMenu();
+    helpMenu->Append(wxID_HELP);
+    helpMenu->Append(wxID_ABOUT);
+    wxMenuBar* menuBar = new wxMenuBar();
+    menuBar->Append( helpMenu, "&Help" );
+    SetMenuBar(menuBar);
     sliderBk.LoadFile(wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("sliderbk.bmp")), wxBITMAP_TYPE_BMP );
     sliderInd.LoadFile(wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("sliderind.bmp")), wxBITMAP_TYPE_BMP );
     hsliderBk.LoadFile(wxString::Format(_("%s//%s"), wxStandardPaths::Get().GetResourcesDir(), _("hsliderbk.bmp")), wxBITMAP_TYPE_BMP );
@@ -388,7 +397,7 @@ void wxKeyboard::CreateControls()
 	_slZoomLevel = new wxSlider( itemDialog1, ID_ZOOM_LEVEL, 2, 1, 10, wxDefaultPosition, wxSize(-1, 290), wxVERTICAL );
 	_slZoomLevel->SetBackgroundColour(_backgroundColour);
 	_slZoomLevel->SetForegroundColour(_textColour);
-	_slZoomLevel->Connect(ID_ZOOM_LEVEL, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnSliderRelease), NULL, this);
+	_slZoomLevel->Connect(ID_ZOOM_LEVEL, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnSliderRelease), NULL, this);
 	sizer14->Add(_slZoomLevel, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 2);
 	horizTop->Add(sizer14, 0, wxALIGN_LEFT|wxALIGN_TOP, 1);
 
@@ -561,66 +570,68 @@ void wxKeyboard::CreateControls()
 
 	_panicButton = new wxKeylessBitmapButton( itemDialog1, ID_PANICBUTTON, wxBitmap(exclamation_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_panicButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
-	_panicButton->Connect(ID_PANICBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_panicButton->Connect(ID_PANICBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
-	_panicButton->Connect(ID_PANICBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_panicButton->Connect(ID_PANICBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_panicButton->Connect(ID_PANICBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
+	_panicButton->Connect(ID_PANICBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     _panicButton->SetToolTip(_("Panic: Send all notes off MIDI message"));
 
+#ifndef __APPLE__
 	_infoButton = new wxKeylessBitmapButton( itemDialog1, ID_INFOBUTTON, wxBitmap(info_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_infoButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
-	_infoButton->Connect(ID_INFOBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_infoButton->Connect(ID_INFOBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
-	_infoButton->Connect(ID_INFOBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_infoButton->Connect(ID_INFOBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_infoButton->Connect(ID_INFOBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
+	_infoButton->Connect(ID_INFOBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     _infoButton->SetToolTip(_("About SigmaTizm"));
 
 	_helpButton = new wxKeylessBitmapButton( itemDialog1, ID_HELPBUTTON, wxBitmap(help_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_helpButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
-	_helpButton->Connect(ID_HELPBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_helpButton->Connect(ID_HELPBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
-	_helpButton->Connect(ID_HELPBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_helpButton->Connect(ID_HELPBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_helpButton->Connect(ID_HELPBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
+	_helpButton->Connect(ID_HELPBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     _helpButton->SetToolTip(_("Help"));
+#endif
 
 #ifndef VST
 	_settingsButton = new wxKeylessBitmapButton( itemDialog1, ID_BUTTON_SETTINGS, wxBitmap(wrench_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_settingsButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
-	_settingsButton->Connect(ID_BUTTON_SETTINGS, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_settingsButton->Connect(ID_BUTTON_SETTINGS, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
-	_settingsButton->Connect(ID_BUTTON_SETTINGS, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_settingsButton->Connect(ID_BUTTON_SETTINGS, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_settingsButton->Connect(ID_BUTTON_SETTINGS, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
+	_settingsButton->Connect(ID_BUTTON_SETTINGS, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     _settingsButton->SetToolTip(_("Change audio settings"));
 #endif
 
 	//wxBitmap filterBitmap( "filter.xpm", wxBITMAP_TYPE_XPM );
 	//_filterButton = new wxBitmapButton( itemDialog1, ID_FILTERBUTTON, filterBitmap, wxDefaultPosition, wxSize( buttonHeight, buttonHeight ) );
 	//itemBoxSizer3->Add(_filterButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 3 );
-	//_filterButton->Connect(ID_FILTERBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	//_filterButton->Connect(ID_FILTERBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	//_filterButton->Connect(ID_FILTERBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	//_filterButton->Connect(ID_FILTERBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	//_filterButton->Connect(ID_FILTERBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	//_filterButton->Connect(ID_FILTERBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
  //   _filterButton->SetToolTip("Edit filter settings");
 
 #ifndef DEMOVERSION
 	_saveButton = new wxKeylessBitmapButton( itemDialog1, ID_SAVEBUTTON, wxBitmap(disk_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_saveButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
-	_saveButton->Connect(ID_SAVEBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_saveButton->Connect(ID_SAVEBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
-	_saveButton->Connect(ID_SAVEBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_saveButton->Connect(ID_SAVEBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_saveButton->Connect(ID_SAVEBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
+	_saveButton->Connect(ID_SAVEBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     _saveButton->SetToolTip(_("Save Synthesizer Configuration to Disk"));
 #endif
 
 	_loadButton = new wxKeylessBitmapButton( itemDialog1, ID_LOADBUTTON, wxBitmap(openfolder_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_loadButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
-	_loadButton->Connect(ID_LOADBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_loadButton->Connect(ID_LOADBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
-	_loadButton->Connect(ID_LOADBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_loadButton->Connect(ID_LOADBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_loadButton->Connect(ID_LOADBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
+	_loadButton->Connect(ID_LOADBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     _loadButton->SetToolTip(_("Load Synthesizer Configuration from Disk"));
 
 #ifndef linux
 	wxBoxSizer* itemBoxSizer3b = new wxBoxSizer(wxVERTICAL);
 	_volumeMeterL = new wxVolumeMeter( itemDialog1, ID_VOLUME_LEFT, 100, wxDefaultPosition, wxSize(100, 13));
-	_volumeMeterL->Connect(ID_VOLUME_LEFT, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_volumeMeterL->Connect(ID_VOLUME_LEFT, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
 	itemBoxSizer3b->Add(_volumeMeterL, 0, wxALL, 1);
 
 	_volumeMeterR = new wxVolumeMeter( itemDialog1, ID_VOLUME_RIGHT, 100, wxDefaultPosition, wxSize(100, 13));
-	_volumeMeterR->Connect(ID_VOLUME_RIGHT, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_volumeMeterR->Connect(ID_VOLUME_RIGHT, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
 	itemBoxSizer3b->Add(_volumeMeterR, 0, wxALL, 1);
 	horizTop3->Add(itemBoxSizer3b, 0, wxALL, 1);
 #endif
@@ -628,43 +639,43 @@ void wxKeyboard::CreateControls()
 #ifndef VST
 	_midiButton = new wxKeylessBitmapButton( itemDialog1, ID_MIDIBUTTON, wxBitmap(midiport_xpm), wxDefaultPosition, wxSize(buttonHeight, buttonHeight) );
 	horizTop3->Add(_midiButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1 );
-	_midiButton->Connect(ID_MIDIBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_midiButton->Connect(ID_MIDIBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
-	_midiButton->Connect(ID_MIDIBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_midiButton->Connect(ID_MIDIBUTTON, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_midiButton->Connect(ID_MIDIBUTTON, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
+	_midiButton->Connect(ID_MIDIBUTTON, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     _midiButton->SetToolTip(_("Change MIDI settings"));
 #endif
 
 	wxStaticText* itemStaticText4 = new wxStaticText( itemDialog1, wxID_STATIC, _("Bank"), wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText4->SetForegroundColour(_textColour);
-	itemStaticText4->Connect(wxID_STATIC, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	itemStaticText4->Connect(wxID_STATIC, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     horizTop3->Add(itemStaticText4, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _bankText = new wxStaticText( itemDialog1, ID_BANKTEXT, _T("1  "), wxDefaultPosition, wxSize( 22, -1 ), 0 );
     _bankText->SetForegroundColour(_textColour);
-	_bankText->Connect(ID_BANKTEXT, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_bankText->Connect(ID_BANKTEXT, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
 	horizTop3->Add(_bankText, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_bankSpin = new wxBitmapSpinButton( itemDialog1, ID_BANKSPIN, wxDefaultPosition, wxSize( 16, 22 ), wxSP_ARROW_KEYS|wxSP_VERTICAL );
     _bankSpin->SetBitmap( &spinImage );
     _bankSpin->SetRange(1, 128);
-	_bankSpin->Connect(ID_BANKSPIN, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_bankSpin->Connect(ID_BANKSPIN, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
 	_bankSpin->SetToolTip( _("Change patch bank" ));
 	horizTop3->Add(_bankSpin, 0, wxALIGN_CENTER_VERTICAL|wxALL, 2 );
 
     wxStaticText* itemStaticText8 = new wxStaticText( itemDialog1, wxID_STATIC, _("Patch"), wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText8->SetForegroundColour(_textColour);
-	itemStaticText8->Connect(wxID_STATIC, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	itemStaticText8->Connect(wxID_STATIC, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     horizTop3->Add(itemStaticText8, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _patchText = new wxStaticText( itemDialog1, ID_PATCHTEXT, _("1  "), wxDefaultPosition, wxSize( 22, -1 ), 0 );
     _patchText->SetForegroundColour(_textColour);
-	_patchText->Connect(ID_PATCHTEXT, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_patchText->Connect(ID_PATCHTEXT, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
     horizTop3->Add(_patchText, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_patchSpin = new wxBitmapSpinButton( itemDialog1, ID_PATCHSPIN, wxDefaultPosition, wxSize( 16, 22 ), wxSP_ARROW_KEYS|wxSP_VERTICAL );
     _patchSpin->SetBitmap( &spinImage );
     _patchSpin->SetRange(1, 128);
-	_patchSpin->Connect(ID_PATCHSPIN, wxEVT_LEFT_UP, wxMouseEventHandler(wxKeyboard::OnMouseRelease), NULL, this);
+	_patchSpin->Connect(ID_PATCHSPIN, wxEVT_LEFT_UP, wxMouseEventHandler(Sigmatizm::OnMouseRelease), NULL, this);
 	_patchSpin->SetToolTip( _("Change patch number") );
 	horizTop3->Add(_patchSpin, 0, wxALIGN_CENTER_VERTICAL|wxALL, 2 );
 
@@ -676,14 +687,14 @@ void wxKeyboard::CreateControls()
 	_pitchWheel = new wxBitmapSlider( itemDialog1, ID_PITCHWHEEL, 8192, 0, 16383, wxDefaultPosition, wxSize( 30, 108 ), wxSL_VERTICAL|wxSL_INVERSE );
     _pitchWheel->SetBitmaps( &sliderBk, &sliderInd );
     itemBoxSizer12->Add( _pitchWheel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	_pitchWheel->Connect(ID_PITCHWHEEL, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_pitchWheel->Connect(ID_PITCHWHEEL, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+	_pitchWheel->Connect(ID_PITCHWHEEL, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_pitchWheel->Connect(ID_PITCHWHEEL, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
 
 	_modWheel = new wxBitmapSlider( itemDialog1, ID_MODWHEEL, 0, 0, 16383, wxDefaultPosition, wxSize( 30, 108 ), wxSL_VERTICAL|wxSL_INVERSE );
 	_modWheel->SetBitmaps( &sliderBk, &sliderInd );
 	itemBoxSizer12->Add( _modWheel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	_modWheel->Connect(ID_MODWHEEL, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_modWheel->Connect(ID_MODWHEEL, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+	_modWheel->Connect(ID_MODWHEEL, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_modWheel->Connect(ID_MODWHEEL, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
 
 #ifndef __APPLE__
     wxString octavePath = _("octave.bmp");
@@ -697,44 +708,44 @@ void wxKeyboard::CreateControls()
     _octave[0] = new wxOctaveCtrl( itemDialog1, ID_KEYBOARD1, _octaveBitmap, 24, this, wxDefaultPosition, wxSize(137, 99), wxNO_BORDER );
     itemBoxSizer12->Add(_octave[0], 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
     _octave[0]->SetBitmaps(keyind1sml, keyind1lrg);
-    _octave[0]->Connect(ID_KEYBOARD1, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-    _octave[0]->Connect(ID_KEYBOARD1, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+    _octave[0]->Connect(ID_KEYBOARD1, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+    _octave[0]->Connect(ID_KEYBOARD1, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
 
     _octave[1] = new wxOctaveCtrl( itemDialog1, ID_KEYBOARD2, _octaveBitmap, 36, this, wxDefaultPosition, wxSize(137, 99), wxNO_BORDER );
     itemBoxSizer12->Add(_octave[1], 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 	_octave[1]->SetBitmaps(keyind1sml, keyind1lrg);
-	_octave[1]->Connect(ID_KEYBOARD2, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_octave[1]->Connect(ID_KEYBOARD2, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+	_octave[1]->Connect(ID_KEYBOARD2, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_octave[1]->Connect(ID_KEYBOARD2, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
 
     _octave[2] = new wxOctaveCtrl( itemDialog1, ID_KEYBOARD3, _octaveBitmap, 48, this, wxDefaultPosition, wxSize(137, 99), wxNO_BORDER );
     itemBoxSizer12->Add(_octave[2], 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 	_octave[2]->SetBitmaps(keyind1sml, keyind1lrg);
-	_octave[2]->Connect(ID_KEYBOARD3, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_octave[2]->Connect(ID_KEYBOARD3, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+	_octave[2]->Connect(ID_KEYBOARD3, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_octave[2]->Connect(ID_KEYBOARD3, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
 
     _octave[3] = new wxOctaveCtrl( itemDialog1, ID_KEYBOARD4, _octaveBitmap, 60, this, wxDefaultPosition, wxSize(137, 99), wxNO_BORDER );
     itemBoxSizer12->Add(_octave[3], 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 	_octave[3]->SetBitmaps(keyind1sml, keyind1lrg);
-	_octave[3]->Connect(ID_KEYBOARD4, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_octave[3]->Connect(ID_KEYBOARD4, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+	_octave[3]->Connect(ID_KEYBOARD4, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_octave[3]->Connect(ID_KEYBOARD4, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
 
     _octave[4] = new wxOctaveCtrl( itemDialog1, ID_KEYBOARD5, _octaveBitmap, 72, this, wxDefaultPosition, wxSize(137, 99), wxNO_BORDER );
     itemBoxSizer12->Add(_octave[4], 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 	_octave[4]->SetBitmaps(keyind1sml, keyind1lrg);
-	_octave[4]->Connect(ID_KEYBOARD5, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_octave[4]->Connect(ID_KEYBOARD5, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+	_octave[4]->Connect(ID_KEYBOARD5, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_octave[4]->Connect(ID_KEYBOARD5, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
 
     _octave[5] = new wxOctaveCtrl( itemDialog1, ID_KEYBOARD4, _octaveBitmap, 84, this, wxDefaultPosition, wxSize(137, 99), wxNO_BORDER );
     itemBoxSizer12->Add(_octave[5], 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 	_octave[5]->SetBitmaps(keyind1sml, keyind1lrg);
-	_octave[5]->Connect(ID_KEYBOARD6, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_octave[5]->Connect(ID_KEYBOARD6, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+	_octave[5]->Connect(ID_KEYBOARD6, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_octave[5]->Connect(ID_KEYBOARD6, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
 
     _octave[6] = new wxOctaveCtrl( itemDialog1, ID_KEYBOARD5, _octaveBitmap, 96, this, wxDefaultPosition, wxSize(137, 99), wxNO_BORDER );
     itemBoxSizer12->Add(_octave[6], 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 	_octave[6]->SetBitmaps(keyind1sml, keyind1lrg);
-	_octave[6]->Connect(ID_KEYBOARD7, wxEVT_KEY_DOWN, wxKeyEventHandler(wxKeyboard::OnKeyDown), NULL, this);
-	_octave[6]->Connect(ID_KEYBOARD7, wxEVT_KEY_UP, wxKeyEventHandler(wxKeyboard::OnKeyUp), NULL, this);
+	_octave[6]->Connect(ID_KEYBOARD7, wxEVT_KEY_DOWN, wxKeyEventHandler(Sigmatizm::OnKeyDown), NULL, this);
+	_octave[6]->Connect(ID_KEYBOARD7, wxEVT_KEY_UP, wxKeyEventHandler(Sigmatizm::OnKeyUp), NULL, this);
 
 	// Set initial panel values.
 	_timbrePanel->SetHarmonicLevels(&_initialHarmonicLevels[0], &_finalHarmonicLevels[0]);
@@ -745,12 +756,12 @@ void wxKeyboard::CreateControls()
     _patchSpin->Refresh();
 }
 
-bool wxKeyboard::ShowToolTips()
+bool Sigmatizm::ShowToolTips()
 {
     return true;
 }
 
-wxBitmap wxKeyboard::GetBitmapResource( const wxString& name )
+wxBitmap Sigmatizm::GetBitmapResource( const wxString& name )
 {
     // Bitmap retrieval
     wxUnusedVar(name);
@@ -765,12 +776,12 @@ wxBitmap wxKeyboard::GetBitmapResource( const wxString& name )
 /**
 * Enables or disables MIDI output.
 */
-void wxKeyboard::EnableMidiOutput(bool enabled)
+void Sigmatizm::EnableMidiOutput(bool enabled)
 {
 	_midiOutputEnabled = enabled;
 }
 
-wxIcon wxKeyboard::GetIconResource( const wxString& name )
+wxIcon Sigmatizm::GetIconResource( const wxString& name )
 {
     wxUnusedVar(name);
     return wxNullIcon;
@@ -779,7 +790,7 @@ wxIcon wxKeyboard::GetIconResource( const wxString& name )
 /**
 * Displays the MIDI settings dialog, changing settings based on responses.
 */
-void wxKeyboard::OnMidiSettings( wxCommandEvent& )
+void Sigmatizm::OnMidiSettings( wxCommandEvent& )
 {
 #ifndef VST
 	wxMidiSettingsDlg* dlg = new wxMidiSettingsDlg(this, this);
@@ -800,7 +811,7 @@ void wxKeyboard::OnMidiSettings( wxCommandEvent& )
 /**
 * Changes the MIDI input channel.
 */
-void wxKeyboard::SelectMidiInputChannel( int number )
+void Sigmatizm::SelectMidiInputChannel( int number )
 {
     // Set MIDI Channel
 	if( number > 16 )
@@ -814,7 +825,7 @@ void wxKeyboard::SelectMidiInputChannel( int number )
 /**
 * Changes the MIDI output channel, turning off all notes on the previous channel.
 */
-void wxKeyboard::SelectMidiOutputChannel( int number )
+void Sigmatizm::SelectMidiOutputChannel( int number )
 {
     // Set MIDI Channel
 	if( number > 16 )
@@ -828,7 +839,7 @@ void wxKeyboard::SelectMidiOutputChannel( int number )
 /**
 * Handles bank up spinner events.
 */
-void wxKeyboard::OnBankSpinUp( wxSpinEvent& event )
+void Sigmatizm::OnBankSpinUp( wxSpinEvent& event )
 {
     // Set Bank
     int value = atoi(_bankText->GetLabel().ToAscii());
@@ -845,7 +856,7 @@ void wxKeyboard::OnBankSpinUp( wxSpinEvent& event )
 /**
 * Handles bank down spinner events.
 */
-void wxKeyboard::OnBankSpinDown( wxSpinEvent& event )
+void Sigmatizm::OnBankSpinDown( wxSpinEvent& event )
 {
     // Set Bank
     int value = atoi(_bankText->GetLabel().ToAscii());
@@ -862,7 +873,7 @@ void wxKeyboard::OnBankSpinDown( wxSpinEvent& event )
 /**
 * Changes patch banks, sending MIDI bank change messages.
 */
-void wxKeyboard::SetBank( int bank, bool receivedFromMidi )
+void Sigmatizm::SetBank( int bank, bool receivedFromMidi )
 {
     // Send MIDI message
 	// Bank change 0x00 0xB0 0x00 0x[bank]  - fine
@@ -881,7 +892,7 @@ void wxKeyboard::SetBank( int bank, bool receivedFromMidi )
 /**
 * Handles patch spinner up events.
 */
-void wxKeyboard::OnPatchSpinUp( wxSpinEvent& event )
+void Sigmatizm::OnPatchSpinUp( wxSpinEvent& event )
 {
     // Set Patch
     int value = atoi(_patchText->GetLabel().ToAscii());
@@ -899,7 +910,7 @@ void wxKeyboard::OnPatchSpinUp( wxSpinEvent& event )
 /**
 * Handles patch spinner down events.
 */
-void wxKeyboard::OnPatchSpinDown( wxSpinEvent& event )
+void Sigmatizm::OnPatchSpinDown( wxSpinEvent& event )
 {
     // Set Patch
     int value = atoi(_patchText->GetLabel().ToAscii());
@@ -915,7 +926,7 @@ void wxKeyboard::OnPatchSpinDown( wxSpinEvent& event )
 /**
 * Handles patch changes, sends MIDI patch change message.
 */
-void wxKeyboard::SetPatch( int value, bool receivedFromMidi )
+void Sigmatizm::SetPatch( int value, bool receivedFromMidi )
 {
     // Send MIDI message
 	// Patch change: 0xC[channel] + byte for patch change.
@@ -930,7 +941,7 @@ void wxKeyboard::SetPatch( int value, bool receivedFromMidi )
 /**
 * Handles window close events.
 */
-void wxKeyboard::OnCloseWindow( wxCloseEvent& event )
+void Sigmatizm::OnCloseWindow( wxCloseEvent& event )
 {
     this->Destroy();
     wxThread::Sleep(12);
@@ -940,7 +951,7 @@ void wxKeyboard::OnCloseWindow( wxCloseEvent& event )
 /**
 * Handles key down events.
 */
-void wxKeyboard::OnKeyDown( wxKeyEvent& event )
+void Sigmatizm::OnKeyDown( wxKeyEvent& event )
 {
     int key = event.GetKeyCode();
 	// Tab navigation explicitly disabled.
@@ -990,7 +1001,7 @@ void wxKeyboard::OnKeyDown( wxKeyEvent& event )
 /**
 * Handles key up events, turns off a playing note.
 */
-void wxKeyboard::OnKeyUp( wxKeyEvent& event )
+void Sigmatizm::OnKeyUp( wxKeyEvent& event )
 {
 	int key = event.GetKeyCode();
 	int note = GetNoteValue( key );
@@ -1006,7 +1017,7 @@ void wxKeyboard::OnKeyUp( wxKeyEvent& event )
 /**
 * Gets the MIDI note number from a keyboard code.
 */
-int wxKeyboard::GetNoteValue( int value )
+int Sigmatizm::GetNoteValue( int value )
 {
 	int note = 0;
     switch( value )
@@ -1201,7 +1212,7 @@ int wxKeyboard::GetNoteValue( int value )
 /**
 * Turns on a note and sends MIDI note on data.
 */
-void wxKeyboard::PlayNote( int note, bool receivedFromMidi )
+void Sigmatizm::PlayNote( int note, bool receivedFromMidi )
 {
 	if( _playing[note] == false )
 	{
@@ -1244,7 +1255,7 @@ void wxKeyboard::PlayNote( int note, bool receivedFromMidi )
 /**
 * Takes the note number and figures out which octave object it refers to.
 */
-int wxKeyboard::GetOctaveByNote( int note )
+int Sigmatizm::GetOctaveByNote( int note )
 {
 	// Minimum octave and below is translated to minimum octave.
 	if( note < 36 )
@@ -1265,7 +1276,7 @@ int wxKeyboard::GetOctaveByNote( int note )
 /**
 * Turns off a note, sends MIDI note off data.
 */
-void wxKeyboard::StopNote( int note, bool receivedFromMidi )
+void Sigmatizm::StopNote( int note, bool receivedFromMidi )
 {
 	int octavenum = GetOctaveByNote(note);
 	if( octavenum >= 0 && octavenum < MAX_OCTAVES )
@@ -1289,7 +1300,7 @@ void wxKeyboard::StopNote( int note, bool receivedFromMidi )
 /**
 * Processes mouse right clicks.  Turns off a playing note if it's on.
 */
-void wxKeyboard::OnRightClick( int note )
+void Sigmatizm::OnRightClick( int note )
 {
 	StopNote(note, false);
 }
@@ -1299,7 +1310,7 @@ void wxKeyboard::OnRightClick( int note )
 */
 void MidiMessageHandler( double deltatime, std::vector< unsigned char > *message, void *userData )
 {
-	wxKeyboard* key = (wxKeyboard*)userData;
+	Sigmatizm* key = (Sigmatizm*)userData;
 
     unsigned char a = 0;
     unsigned char b = 0;
@@ -1333,7 +1344,7 @@ void MidiMessageHandler( double deltatime, std::vector< unsigned char > *message
 /**
 * Handles incoming MIDI message data.
 */
-void wxKeyboard::ProcessMidiMessage(unsigned char byte1, unsigned char byte2, unsigned char byte3, unsigned char byte4)
+void Sigmatizm::ProcessMidiMessage(unsigned char byte1, unsigned char byte2, unsigned char byte3, unsigned char byte4)
 {
     //std::cout << "Received MIDI Message: " << (int)byte1 << "," << (int)byte2 << "," << (int)byte3 << "," << (int)byte4 << std::endl;
 	// MIDI timimg clock pulse.  Doesn't mean anything to us.
@@ -1398,7 +1409,7 @@ void wxKeyboard::ProcessMidiMessage(unsigned char byte1, unsigned char byte2, un
 /**
 * Processes MIDI input device selection changes.
 */
-void wxKeyboard::SelectMidiInputDevice(int number)
+void Sigmatizm::SelectMidiInputDevice(int number)
 {
 #ifndef VST
 	_midiInputDeviceNumber = number;
@@ -1418,7 +1429,7 @@ void wxKeyboard::SelectMidiInputDevice(int number)
 /**
 * Processes MIDI output device selection changes.
 */
-void wxKeyboard::SelectMidiOutputDevice(int number)
+void Sigmatizm::SelectMidiOutputDevice(int number)
 {
 #ifndef VST
 	_midiOutputDeviceNumber = number;
@@ -1437,7 +1448,7 @@ void wxKeyboard::SelectMidiOutputDevice(int number)
 /**
 * Handles pitch wheel messages, sends MIDI controller data.
 */
-void wxKeyboard::OnPitchWheel( wxScrollEvent& event )
+void Sigmatizm::OnPitchWheel( wxScrollEvent& event )
 {
 	int value;
 	if( event.GetEventType() == wxEVT_SCROLL_THUMBRELEASE )
@@ -1464,7 +1475,7 @@ void wxKeyboard::OnPitchWheel( wxScrollEvent& event )
 /**
 * Handles mod wheel messages, sends MIDI controller data.
 */
-void wxKeyboard::OnModWheel( wxScrollEvent& event )
+void Sigmatizm::OnModWheel( wxScrollEvent& event )
 {
 	int value = _modWheel->GetValue();
 	int coarse = value / 128;
@@ -1490,7 +1501,7 @@ void wxKeyboard::OnModWheel( wxScrollEvent& event )
 /**
 * Handles panic button, turns everything off.
 */
-void wxKeyboard::OnPanic( wxCommandEvent& event )
+void Sigmatizm::OnPanic( wxCommandEvent& event )
 {
 	AllNotesOff();
 	AllControllersOff();
@@ -1502,7 +1513,7 @@ void wxKeyboard::OnPanic( wxCommandEvent& event )
 /**
 * Sends MIDI all sounds off message.
 */
-void wxKeyboard::AllSoundOff( void )
+void Sigmatizm::AllSoundOff( void )
 {
 	if( _midiOutputEnabled )
 	{
@@ -1514,7 +1525,7 @@ void wxKeyboard::AllSoundOff( void )
 /**
 * Handles release of the left mouse button.
 */
-void wxKeyboard::OnMouseRelease( wxMouseEvent& event )
+void Sigmatizm::OnMouseRelease( wxMouseEvent& event )
 {
 	AllNotesOff();
 	event.Skip();
@@ -1523,7 +1534,7 @@ void wxKeyboard::OnMouseRelease( wxMouseEvent& event )
 /**
 * Turns off all notes and indicators.
 */
-void wxKeyboard::AllNotesOff( bool receivedFromMidi )
+void Sigmatizm::AllNotesOff( bool receivedFromMidi )
 {
 	for( int i = 0; i < MAX_NOTES; i++ )
 	{
@@ -1549,7 +1560,7 @@ void wxKeyboard::AllNotesOff( bool receivedFromMidi )
 /**
 * Turns off all MIDI controllers.
 */
-void wxKeyboard::AllControllersOff( void )
+void Sigmatizm::AllControllersOff( void )
 {
 	if( _midiOutputEnabled )
 	{
@@ -1565,7 +1576,7 @@ void wxKeyboard::AllControllersOff( void )
 /**
 * Loads a synth config from disk and sets up the key map.
 */
-void wxKeyboard::OnLoadConfig( wxCommandEvent& event )
+void Sigmatizm::OnLoadConfig( wxCommandEvent& event )
 {
 	// This will probably only work right on Windows 7 or newer because XP has a different path structure.
 	//wxString path = wxStandardPaths::Get().GetUserConfigDir() + _("\\..\\Local\\Sigmatizm");
@@ -1631,7 +1642,7 @@ void wxKeyboard::OnLoadConfig( wxCommandEvent& event )
 /**
 * Saves a synth config to disk.
 */
-void wxKeyboard::OnSaveConfig( wxCommandEvent& event )
+void Sigmatizm::OnSaveConfig( wxCommandEvent& event )
 {
 #ifndef DEMOVERSION
 	wxString path = wxStandardPaths::Get().GetUserConfigDir() + _("\\..\\Local\\Sigmatizm");
@@ -1673,7 +1684,7 @@ void wxKeyboard::OnSaveConfig( wxCommandEvent& event )
 /**
 * Shows help file.
 */
-void wxKeyboard::OnHelp( wxCommandEvent& event )
+void Sigmatizm::OnHelp( wxCommandEvent& event )
 {
 	// Show help file.
 	_helpCtrl->DisplayContents();
@@ -1684,7 +1695,7 @@ void wxKeyboard::OnHelp( wxCommandEvent& event )
 /**
 * Shows the dialog for editing filter settings.
 */
-void wxKeyboard::OnFilter( wxCommandEvent& event )
+void Sigmatizm::OnFilter( wxCommandEvent& event )
 {
 	//wxFilterSettingsDlg* dlg = new wxFilterSettingsDlg(this);
  //   dlg->SetForegroundColour(wxColour( 150, 150, 250 ));
@@ -1736,12 +1747,12 @@ void wxKeyboard::OnFilter( wxCommandEvent& event )
 /**
 * Shows about box.
 */
-void wxKeyboard::OnInfo( wxCommandEvent& event )
+void Sigmatizm::OnInfo( wxCommandEvent& event )
 {
 	// Show about box.
     wxAboutDialogInfo info;
     info.SetVersion(_("1.11"));
-    info.SetCopyright(_("Copyright 2008-2016 Jason Champion"));
+    info.SetCopyright(_("Copyright 2008-2019 Jason Champion"));
 	info.AddDeveloper(_("Jason Champion"));
 	info.SetIcon(_icon);
 #ifdef DEMOVERSION
@@ -1754,12 +1765,12 @@ void wxKeyboard::OnInfo( wxCommandEvent& event )
     info.SetName(_("SigmaTizm VST"));
 	info.SetDescription(_("SigmaTizm uses the wxWidgets libraries."));
 #else
-    info.SetLicense(_("Copyright 2008-2016 Jason Champion\n\nSigmaTizm is proprietary software and may not be distributed without a license.\n\nThe software is provided 'as is', without warranty of any kind,\nexpress or implied, including but not limited to the warranties\nof merchantability, fitness for a particular purpose and\nnoninfringement.  In no event shall the authors or copyright\nholders be liable for any claim, damages or other liability,\nwhether in an action of contract, tort or otherwise, arising\nfrom, out of or in connection with the software or the use\nor other dealings in the software."));
+    info.SetLicense(_("Copyright 2008-2019 Jason Champion\n\nSigmaTizm is proprietary software and may not be distributed without a license.\n\nThe software is provided 'as is', without warranty of any kind,\nexpress or implied, including but not limited to the warranties\nof merchantability, fitness for a particular purpose and\nnoninfringement.  In no event shall the authors or copyright\nholders be liable for any claim, damages or other liability,\nwhether in an action of contract, tort or otherwise, arising\nfrom, out of or in connection with the software or the use\nor other dealings in the software."));
     info.SetName(_("SigmaTizm"));
 	info.SetDescription(_("SigmaTizm uses the wxWidgets, PortAudio, and RtMidi libraries."));
 #endif
 #endif
-	info.SetWebSite(_("http://zetacentauri.com"));
+	info.SetWebSite(_("https://zetacentauri.com"));
 
     wxAboutBox(info);
 	ResetFocus();
@@ -1770,7 +1781,7 @@ void wxKeyboard::OnInfo( wxCommandEvent& event )
 /**
 * Forwards the VST render call to the PortAudio RenderAudio call.
 */
-void wxKeyboard::processReplacing (float** inputs, float** outputs, VstInt32 sampleFrames)
+void Sigmatizm::processReplacing (float** inputs, float** outputs, VstInt32 sampleFrames)
 {
     RenderAudio(*inputs, *outputs, sampleFrames);
 }
@@ -1780,9 +1791,9 @@ void wxKeyboard::processReplacing (float** inputs, float** outputs, VstInt32 sam
 * Generates one buffer worth of audio and queues it up.  This is called by the PortAudio callback.
 */
 #ifndef VST
-int wxKeyboard::RenderAudio( void *output, void *input, unsigned int frameCount, double streamTime, RtAudioStreamStatus statusFlags, void* userData )
+int Sigmatizm::RenderAudio( void *output, void *input, unsigned int frameCount, double streamTime, RtAudioStreamStatus statusFlags, void* userData )
 #else
-int wxKeyboard::RenderAudio( void *input, void *output, unsigned long frameCount )
+int Sigmatizm::RenderAudio( void *input, void *output, unsigned long frameCount )
 #endif
 {
 	float* buffer = (float*)output;
@@ -1881,7 +1892,7 @@ int wxKeyboard::RenderAudio( void *input, void *output, unsigned long frameCount
 	return 0;
 }
 
-float wxKeyboard::InterpolateHarmonic(int note, int harmonicNumber)
+float Sigmatizm::InterpolateHarmonic(int note, int harmonicNumber)
 {
 	if( _initialHarmonicLevels[harmonicNumber] == _finalHarmonicLevels[harmonicNumber] )
 	{
@@ -1914,7 +1925,7 @@ float wxKeyboard::InterpolateHarmonic(int note, int harmonicNumber)
 * Calculates the volume modification based on the envelope position, using the number
 * of samples that have been played since the note has been triggered.
 */
-float wxKeyboard::GetEnvelopeVolume(int note, int playbackSamplePosition, int offset)
+float Sigmatizm::GetEnvelopeVolume(int note, int playbackSamplePosition, int offset)
 {
     // Because we may finish playing audio for a note before an entire block is rendered, we need to
     // return zero volume when no sound should be playing.
@@ -1988,7 +1999,7 @@ float wxKeyboard::GetEnvelopeVolume(int note, int playbackSamplePosition, int of
 	return 1.0f;
 }
 
-void wxKeyboard::OnHarmonicsChanged( float* initialHarmonics, float* finalHarmonics )
+void Sigmatizm::OnHarmonicsChanged( float* initialHarmonics, float* finalHarmonics )
 {
 	memcpy(&_initialHarmonicLevels, initialHarmonics, (sizeof(float) * MAX_HARMONICS));
 	memcpy(&_finalHarmonicLevels, finalHarmonics, (sizeof(float) * MAX_HARMONICS));
@@ -2027,7 +2038,7 @@ void wxKeyboard::OnHarmonicsChanged( float* initialHarmonics, float* finalHarmon
     _finalWave->SetData(sustain);
 }
 
-void wxKeyboard::SendMidiMessage(unsigned char byte1, unsigned char byte2, unsigned char byte3, unsigned char byte4, bool shortmsg)
+void Sigmatizm::SendMidiMessage(unsigned char byte1, unsigned char byte2, unsigned char byte3, unsigned char byte4, bool shortmsg)
 {
 	//WORD loWord = MAKEWORD( byte2, byte1 );
 	//WORD hiWord = MAKEWORD( byte4, byte3 );
@@ -2049,7 +2060,7 @@ void wxKeyboard::SendMidiMessage(unsigned char byte1, unsigned char byte2, unsig
     }
 }
 
-void wxKeyboard::OnPaintInitialWave(wxPaintEvent& event)
+void Sigmatizm::OnPaintInitialWave(wxPaintEvent& event)
 {
 	wxColour brushColour = wxColour(224,224,0);
 	wxPaintDC dc(this);
@@ -2060,7 +2071,7 @@ void wxKeyboard::OnPaintInitialWave(wxPaintEvent& event)
 	event.Skip(true);
 }
 
-void wxKeyboard::OnPaintFinalWave(wxPaintEvent& event)
+void Sigmatizm::OnPaintFinalWave(wxPaintEvent& event)
 {
 	wxColour brushColour = wxColour(224,224,0);
 	wxPaintDC dc(this);
@@ -2071,14 +2082,14 @@ void wxKeyboard::OnPaintFinalWave(wxPaintEvent& event)
 	event.Skip(true);
 }
 
-void wxKeyboard::OnNormalize( wxCommandEvent& event )
+void Sigmatizm::OnNormalize( wxCommandEvent& event )
 {
 	_timbrePanel->Normalize();
 	ResetFocus();
 	event.Skip();
 }
 
-void wxKeyboard::OnInitial( wxCommandEvent& event )
+void Sigmatizm::OnInitial( wxCommandEvent& event )
 {
 	_timbrePanel->GetHarmonicPanel()->SetInitialVisible(true);
 	_btnInitial->Enable(false);
@@ -2087,7 +2098,7 @@ void wxKeyboard::OnInitial( wxCommandEvent& event )
 	event.Skip();
 }
 
-void wxKeyboard::OnFinal( wxCommandEvent& event )
+void Sigmatizm::OnFinal( wxCommandEvent& event )
 {
 	_timbrePanel->GetHarmonicPanel()->SetInitialVisible(false);
 	_btnInitial->Enable(true);
@@ -2096,7 +2107,7 @@ void wxKeyboard::OnFinal( wxCommandEvent& event )
 	event.Skip();
 }
 
-void wxKeyboard::OnClear( wxCommandEvent& event )
+void Sigmatizm::OnClear( wxCommandEvent& event )
 {
 	float values[128];
 	memset(values, 0, (sizeof(float) * 128));
@@ -2113,7 +2124,7 @@ void wxKeyboard::OnClear( wxCommandEvent& event )
 	event.Skip();
 }
 
-void wxKeyboard::OnGenerate( wxCommandEvent& event )
+void Sigmatizm::OnGenerate( wxCommandEvent& event )
 {
 	float harmonicLevels[MAX_HARMONICS];
 	memset(harmonicLevels, 0, (sizeof(float) * MAX_HARMONICS));
@@ -2201,7 +2212,7 @@ void wxKeyboard::OnGenerate( wxCommandEvent& event )
 	event.Skip();
 }
 
-void wxKeyboard::OnZoom( wxScrollEvent& event )
+void Sigmatizm::OnZoom( wxScrollEvent& event )
 {
 	int level = _slZoomLevel->GetValue();
 	_timbrePanel->GetHarmonicPanel()->SetZoomLevel(level);
@@ -2214,7 +2225,7 @@ void wxKeyboard::OnZoom( wxScrollEvent& event )
 /**
 * Left arrow -- copies the final harmonic levels into the initial harmonic levels.
 */
-void wxKeyboard::OnButtonLeft( wxCommandEvent& event )
+void Sigmatizm::OnButtonLeft( wxCommandEvent& event )
 {
 	_timbrePanel->GetHarmonicPanel()->SetInitialHarmonics(&_finalHarmonicLevels[0]);
 	ResetFocus();
@@ -2224,59 +2235,59 @@ void wxKeyboard::OnButtonLeft( wxCommandEvent& event )
 /**
 * Right arrow -- copies the initial harmonic levels into the final harmonic levels.
 */
-void wxKeyboard::OnButtonRight( wxCommandEvent& event )
+void Sigmatizm::OnButtonRight( wxCommandEvent& event )
 {
 	_timbrePanel->GetHarmonicPanel()->SetFinalHarmonics(&_initialHarmonicLevels[0]);
 	ResetFocus();
 	event.Skip();
 }
 
-void wxKeyboard::ResetFocus()
+void Sigmatizm::ResetFocus()
 {
 	_octave[0]->SetFocus();
 }
 
-void wxKeyboard::OnSliderRelease(wxMouseEvent& event)
+void Sigmatizm::OnSliderRelease(wxMouseEvent& event)
 {
 	ResetFocus();
 	event.Skip();
 }
 
-void wxKeyboard::OnFrequency( wxScrollEvent& event )
+void Sigmatizm::OnFrequency( wxScrollEvent& event )
 {
 	_lfoParameters.lfoFrequency = (float)_slFrequency->GetValue() / 10.0f;
 	_txtFrequency->SetLabel( wxString::Format(_("%3.1f"), _lfoParameters.lfoFrequency));
 	event.Skip();
 }
 
-void wxKeyboard::OnLfoWaveform( wxCommandEvent& event )
+void Sigmatizm::OnLfoWaveform( wxCommandEvent& event )
 {
 	_lfoParameters.lfoWaveform = _chLFOWaveform->GetSelection();
 	event.Skip();
 }
 
-void wxKeyboard::OnAttack( wxScrollEvent& event )
+void Sigmatizm::OnAttack( wxScrollEvent& event )
 {
 	_adsrParameters.attackTimeMsec = _slAttack->GetValue();
 	_txtAttack->SetLabel(wxString::Format(_("%3d"), _adsrParameters.attackTimeMsec ));
 	event.Skip();
 }
 
-void wxKeyboard::OnDecay( wxScrollEvent& event )
+void Sigmatizm::OnDecay( wxScrollEvent& event )
 {
 	_adsrParameters.decayTimeMsec = _slDecay->GetValue();
 	_txtDecay->SetLabel(wxString::Format(_("%3d"), _adsrParameters.decayTimeMsec ));
 	event.Skip();
 }
 
-void wxKeyboard::OnSustain( wxScrollEvent& event )
+void Sigmatizm::OnSustain( wxScrollEvent& event )
 {
 	_adsrParameters.sustainLevelPercent = _slSustain->GetValue();
 	_txtSustain->SetLabel(wxString::Format(_("%3d"), _adsrParameters.sustainLevelPercent ));
 	event.Skip();
 }
 
-void wxKeyboard::OnRelease( wxScrollEvent& event )
+void Sigmatizm::OnRelease( wxScrollEvent& event )
 {
 	_adsrParameters.releaseTimeMsec = _slRelease->GetValue();
 	_txtRelease->SetLabel(wxString::Format(_("%3d"), _adsrParameters.releaseTimeMsec ));
@@ -2287,7 +2298,7 @@ void wxKeyboard::OnRelease( wxScrollEvent& event )
 /**
 * Handles displaying the 'select sound device' dialog.  Not available in VST mode.
 */
-void wxKeyboard::OnSettings( wxCommandEvent& event )
+void Sigmatizm::OnSettings( wxCommandEvent& event )
 {
     wxAudioSettings* dlg = new wxAudioSettings(this, this);
     if( dlg != NULL )
@@ -2301,7 +2312,7 @@ void wxKeyboard::OnSettings( wxCommandEvent& event )
     event.Skip();
 }
 
-void wxKeyboard::SelectAudioInputDevice(RtAudio::StreamParameters* device)
+void Sigmatizm::SelectAudioInputDevice(RtAudio::StreamParameters* device)
 {
     // Ignored.  No input.
 }
@@ -2309,7 +2320,7 @@ void wxKeyboard::SelectAudioInputDevice(RtAudio::StreamParameters* device)
 /**
 * Handles changing the audio output device.  Not available in VST mode.
 */
-void wxKeyboard::SelectAudioOutputDevice(RtAudio::StreamParameters* device)
+void Sigmatizm::SelectAudioOutputDevice(RtAudio::StreamParameters* device)
 {
     int value;
     _done = true;
@@ -2332,40 +2343,40 @@ void wxKeyboard::SelectAudioOutputDevice(RtAudio::StreamParameters* device)
     _done = false;
 }
 #else
-void wxKeyboard::idle()
+void Sigmatizm::idle()
 {
     ProcessPendingEvents();
 }
 
-bool wxKeyboard::getEffectName (char* name)
+bool Sigmatizm::getEffectName (char* name)
 {
     vst_strncpy (name, "SigmaTizm", kVstMaxEffectNameLen);
     return true;
 }
 
-bool wxKeyboard::getVendorString (char* text)
+bool Sigmatizm::getVendorString (char* text)
 {
     vst_strncpy (text, "Zeta Centauri, Inc.", kVstMaxVendorStrLen);
     return true;
 }
 
-bool wxKeyboard::getProductString (char* text)
+bool Sigmatizm::getProductString (char* text)
 {
 	vst_strncpy (text, "SigmaTizm", kVstMaxProductStrLen);
 	return true;
 }
 
-VstInt32 wxKeyboard::getVendorVersion ()
+VstInt32 Sigmatizm::getVendorVersion ()
 {
     return 1000;
 }
 
-VstInt32 wxKeyboard::getNumMidiInputChannels ()
+VstInt32 Sigmatizm::getNumMidiInputChannels ()
 {
     return 1;
 }
 
-VstInt32 wxKeyboard::getNumMidiOutputChannels ()
+VstInt32 Sigmatizm::getNumMidiOutputChannels ()
 {
     return 1;
 }
@@ -2373,7 +2384,7 @@ VstInt32 wxKeyboard::getNumMidiOutputChannels ()
 /** 
 * Process VST MIDI Data
 */
-VstInt32 wxKeyboard::processEvents (VstEvents* ev)
+VstInt32 Sigmatizm::processEvents (VstEvents* ev)
 {
     // TODO: Translate this for our MIDI callback.
 	for (VstInt32 i = 0; i < ev->numEvents; i++)
@@ -2405,7 +2416,7 @@ VstInt32 wxKeyboard::processEvents (VstEvents* ev)
 	return 1;
 }
 
-void wxKeyboard::setSampleRate (float sampleRate)
+void Sigmatizm::setSampleRate (float sampleRate)
 {
     // TODO: Deal with this.
 	AudioEffectX::setSampleRate (sampleRate);
@@ -2413,7 +2424,7 @@ void wxKeyboard::setSampleRate (float sampleRate)
 	//fScaler = (float)((double)kWaveSize / (double)sampleRate);
 }
 
-long wxKeyboard::open(void *ptr)
+long Sigmatizm::open(void *ptr)
 {
     //// I would like mainPanel to already exist and be running. Then just show it here instead for recreate it every time we call ETriggerEditor::open();
 
@@ -2430,7 +2441,7 @@ long wxKeyboard::open(void *ptr)
     return true;
 }
 
-VstIntPtr wxKeyboard::dispatcher (VstInt32 opcode, VstInt32 index, VstIntPtr value, void* ptr, float opt)
+VstIntPtr Sigmatizm::dispatcher (VstInt32 opcode, VstInt32 index, VstIntPtr value, void* ptr, float opt)
 {
 	VstIntPtr v = 0;
 	
@@ -2445,7 +2456,7 @@ VstIntPtr wxKeyboard::dispatcher (VstInt32 opcode, VstInt32 index, VstIntPtr val
     return v;
 }
 
-void wxKeyboard::close()
+void Sigmatizm::close()
 {
     //I would like to just Hide the MainPanel here, it needs to still run for the VST to work.
 

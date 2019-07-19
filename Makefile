@@ -13,7 +13,7 @@ LIBDIR = /usr/local/lib
 LIBDIR2 = ../../lib/rtaudio-5.1.0/.libs/
 
 # Object files
-OBJECTS = wxMiniWavePanel.o SettingsDlg.o SynthParametersDlg.o wxHarmonicsPanel.o wxkeyboard.o wxkeyboardapp.o $(INCLUDEDIR3)/RtMidi.o ../wxAudioControls/wxSettingsFile.o ../wxAudioControls/wxBitmapSlider.o ../wxAudioControls/wxMidiSettingsDlg.o ../wxAudioControls/wxVolumeMeter.o ../wxAudioControls/wxSwitch.o ../wxAudioControls/wxKeylessChoice.o ../wxAudioControls/wxOctaveCtrl.o ../wxAudioControls/wxBitmapSpinButton.o ../wxAudioControls/wxKeylessButton.o ../wxAudioControls/wxKeylessBitmapButton.o ../StreamingAudioLib/AudioUtil.o ../StreamingAudioLib/Wavetable.o ../wxAudioControls/wxAudioSettings.o ../AudioEffect/DelayEffect.o
+OBJECTS = wxMiniWavePanel.o SettingsDlg.o SynthParametersDlg.o wxHarmonicsPanel.o Sigmatizm.o wxkeyboardapp.o $(INCLUDEDIR3)/RtMidi.o ../wxAudioControls/wxSettingsFile.o ../wxAudioControls/wxBitmapSlider.o ../wxAudioControls/wxMidiSettingsDlg.o ../wxAudioControls/wxVolumeMeter.o ../wxAudioControls/wxSwitch.o ../wxAudioControls/wxKeylessChoice.o ../wxAudioControls/wxOctaveCtrl.o ../wxAudioControls/wxBitmapSpinButton.o ../wxAudioControls/wxKeylessButton.o ../wxAudioControls/wxKeylessBitmapButton.o ../StreamingAudioLib/AudioUtil.o ../StreamingAudioLib/Wavetable.o ../wxAudioControls/wxAudioSettings.o ../AudioEffect/DelayEffect.o
 
 CXX = $(shell $(WX_CONFIG) --cxx)
 #CXX = $(shell $(WX_CONFIG)) --cxx -ggdb
