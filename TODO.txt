@@ -1,0 +1,6 @@
+### TODO
+
+Port from Portaudio to SDL_Mixer (just like DrumPads).
+Create a VST version.
+Make app load all patches at once and have a drop-down patch selector instead of loading each one from disk one by one.
+ - May need to allow user to specify patch directories as a list.
