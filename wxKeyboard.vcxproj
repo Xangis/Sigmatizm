@@ -32,27 +32,27 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo Debug VST|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -115,10 +115,10 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\rtmidi-2.1.0;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\wxAudioControls\Debug\;F:\lib\rtmidi-2.1.0\lib;F:\lib\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;F:\lib\libsndfile-1.0.25\lib;F:\lib\wxWidgets-3.0.2\lib\vc_lib;$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Xangis\code\wxAudioControls\Release;F:\lib\rtmidi-2.1.0\lib;F:\lib\wxWidgets-3.0.2\lib\vc_lib;F:\lib\libsndfile-1.0.25\lib;F:\lib\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:\lib\wxWidgets-3.0.2\include\;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\rtmidi-2.1.0;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\lib\wxWidgets-3.2.1\include\;E:\lib\pa_stable_v19_20140130\portaudio\include;E:\lib\rtmidi-2.1.0;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\wxAudioControls\Debug;E:\lib\rtmidi-2.1.0\lib;E:\lib\wxWidgets-3.2.1\lib\vc_lib;E:\lib\libsndfile-1.0.28\lib;E:\lib\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\wxAudioControls\Release;E:\lib\rtmidi-2.1.0\lib;E:\lib\wxWidgets-3.2.1\lib\vc_lib;E:\lib\libsndfile-1.0.28\lib;E:\lib\pa_stable_v19_20140130\portaudio\build\msvc\Win32\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\lib\wxWidgets-3.2.1\include\;E:\lib\pa_stable_v19_20140130\portaudio\include;E:\lib\rtmidi-2.1.0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -134,7 +134,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>wxmsw30ud_core.lib;wxmsw30ud_adv.lib;wxmsw30ud_html.lib;wxbase30ud_xml.lib;wxmsw30ud_aui.lib;wxexpatd.lib;wxbase30ud.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;rpcrt4.lib;wxtiffd.lib;wxpngd.lib;wxjpegd.lib;wxzlibd.lib;winmm.lib;wxAudioControlsd.lib;libsndfile-1.lib;portaudio_x86.lib;rtmidid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw32ud_core.lib;wxmsw32ud_adv.lib;wxmsw32ud_html.lib;wxbase32ud_xml.lib;wxmsw32ud_aui.lib;wxexpatd.lib;wxbase32ud.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;rpcrt4.lib;wxtiffd.lib;wxpngd.lib;wxjpegd.lib;wxzlibd.lib;winmm.lib;wxAudioControlsd.lib;libsndfile-1.lib;portaudio_x86.lib;rtmidid.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)SigmaTizm.exe</OutputFile>
       <AdditionalLibraryDirectories>..\wxControls\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -158,7 +158,7 @@
       </DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>wxmsw30u_core.lib;wxmsw30u_adv.lib;wxmsw30u_html.lib;wxbase30u_xml.lib;wxmsw30u_aui.lib;wxexpat.lib;wxbase30u.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;rpcrt4.lib;wxtiff.lib;wxpng.lib;wxjpeg.lib;wxzlib.lib;winmm.lib;wxAudioControls.lib;libsndfile-1.lib;portaudio_x86.lib;rtmidi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw32u_core.lib;wxmsw32u_adv.lib;wxmsw32u_html.lib;wxbase32u_xml.lib;wxmsw32u_aui.lib;wxexpat.lib;wxbase32u.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;rpcrt4.lib;wxtiff.lib;wxpng.lib;wxjpeg.lib;wxzlib.lib;winmm.lib;wxAudioControls.lib;libsndfile-1.lib;portaudio_x86.lib;rtmidi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)SigmaTizm.exe</OutputFile>
       <AdditionalLibraryDirectories>..\wxControls\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -269,7 +269,6 @@
     <ClInclude Include="wxMiniWavePanel.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Changes.txt" />
     <None Include="samplitron.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +279,9 @@
       <Project>{48e7128f-39c1-4781-b2bd-c9ffbaf92d09}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Notes.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

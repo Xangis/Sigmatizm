@@ -50,3 +50,4 @@ ipch
 *.def
 
 .DS_Store
+.vs

@@ -1,3 +1,9 @@
+Changes
+
+December 2022
+Updated from libsndfile 1.0.25 to 1.0.28
+Updated from wxWidgets 3.0.2 to 3.2.1.
+
 ### TODO
 
 Port from Portaudio to SDL_Mixer (just like DrumPads).
